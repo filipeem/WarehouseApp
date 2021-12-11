@@ -11,6 +11,16 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <nav>
+        <%= link_to 'Início', root_path %>
+        <%= link_to 'Cadastrar novo galpão', new_warehouse_path %>
+      </nav>
+    </header>
+    <main>
+      <%= flash[:notice] %>
+      <%= flash[:alert] %>
+      <%= yield %>
+    </main>
   </body>
 </html>

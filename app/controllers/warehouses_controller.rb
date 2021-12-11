@@ -5,15 +5,20 @@ class WarehousesController < ApplicationController
   end
 
   def new
+    @warehouse = Warehouse.new
   end
 
   def create
     warehouse_params = params.require(:warehouse).permit(:name, :code, :address, :state, :city,
                                       :postal_code, :description, :useful_area,
                                       :total_area )
-    warehouse = Warehouse.new(warehouse_params)
-    warehouse.save()
-    redirect_to warehouse_path(warehouse.id), notice: 'Galpão registrado com sucesso'
+    @warehouse = Warehouse.new(warehouse_params)
+    if @warehouse.save()
+        redirect_to warehouse_path(@warehouse.id), notice: 'Galpão registrado com sucesso'
+    else
+        flash.now[:alert] = 'Não foi possível gravar o galpão'
+        render 'new'
+    end                               
   end
   
 end
