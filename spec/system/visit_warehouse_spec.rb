@@ -19,7 +19,6 @@ describe 'Visitante vê um galpão' do
     expect(page).to have_content('CEP: 57050-000')
     expect(page).to have_content('Área Total: 10000 m2')
     expect(page).to have_content('Área Útil: 8000 m2')
-    #expect(page).to have_link('Voltar', href: root_path)
   end
 
   it 'e consegue voltar para a tela inicial' do

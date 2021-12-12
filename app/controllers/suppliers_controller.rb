@@ -1,5 +1,9 @@
 class SuppliersController < ApplicationController
   
+  def index
+    @suppliers = Supplier.all 
+  end
+
   def show
     id = params[:id]
     @supplier = Supplier.find(id)
