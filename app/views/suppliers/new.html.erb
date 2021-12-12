@@ -21,7 +21,7 @@
   </div>
   <div>
     <%= form.label :cnpj, 'CNPJ' %>
-    <%= form.text_area(:cnpj) %>
+    <%= form.text_field(:cnpj) %>
   </div>
   <div>
     <%= form.label :address, 'Endereço' %>
@@ -36,16 +36,12 @@
     <%= form.text_field(:state) %>
   </div>
   <div>
-    <%= form.label :postal_code, 'CEP' %>
-    <%= form.text_field(:postal_code) %>
-  </div>
-  <div>
     <%= form.label :email, 'e-mail' %>
     <%= form.text_field(:email) %>
   </div>
   <div>
     <%= form.label :phone, 'Telefone' %>
-    <%= form.number_field(:phone) %>
+    <%= form.text_field(:phone) %>
   </div>
   <%= form.submit 'Gravar' %>
 <% end %>
