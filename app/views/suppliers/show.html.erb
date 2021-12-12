@@ -1,0 +1,14 @@
+<h1><%= @supplier.name %></h1>
+<h2><%= @supplier.corporate_name %></h2>
+<dl>
+  <dt>CNPJ</dt>
+  <dd><%= @supplier.cnpj %></dd>
+  <dt>Endereço</dt>
+  <dd><%= @supplier.address %> - <%= @supplier.city %>/<%= @supplier.state %></dd>
+  <dt>e-mail</dt>
+  <dd><%= @supplier.email %></dd>
+  <dt>Telefone</dt>
+  <dd><%= @supplier.phone %> m2</dd>
+</dl>
+
+<%= link_to 'Voltar', root_path %>

@@ -1,0 +1,14 @@
+pt-BR:
+  activerecord:
+    models:
+      supplier: Fornecedor
+    attributes:
+      supplier:
+        name: "Nome"
+        corporate_name: "Razão Social"
+        cnpj: "CNPJ"
+        address: "Endereço"
+        city: "Cidade"
+        state: "Estado"
+        email: "e-mail"
+        phone: "Telefone"
