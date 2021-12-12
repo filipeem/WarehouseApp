@@ -1,24 +1,9 @@
-# README
+# Warehouse-APP
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Aplicativo de gerenciamento de galpões, elaborado no programa QueroSerDev 7.
 
-Things you may want to cover:
+* Ruby 3.0.0
 
-* Ruby version
+* Rails 6.1.4.1
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Node 16.13.1
