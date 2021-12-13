@@ -105,4 +105,25 @@ describe 'Visitante cadastra um galpão' do
     expect(page).to have_content "Nome já está em uso"
     expect(page).to have_content "Código já está em uso"
   end
+  it 'e o CEP está no formato correto' do
+    # Arrange
+
+    # Act
+    visit root_path
+    click_on 'Cadastrar novo galpão'
+    fill_in 'Nome', with: 'Maceió'
+    fill_in 'Código', with: 'MCZ'
+    fill_in 'Descrição', with: 'Ótimo galpão numa linda cidade'
+    fill_in 'Endereço', with: 'Av Fernandes Lima'
+    fill_in 'Cidade', with: 'Maceió'
+    fill_in 'Estado', with: 'AL'
+    fill_in 'CEP', with: '57050000'
+    fill_in 'Área Total', with: '10000'
+    fill_in 'Área Útil', with: '8000'
+    click_on 'Gravar'
+    # Assert
+    expect(page).not_to have_content 'Galpão registrado com sucesso'
+    expect(page).to have_content 'Não foi possível gravar o galpão'
+    expect(page).to have_content "CEP não é válido"
+  end
 end
