@@ -85,4 +85,20 @@ describe 'Visitante cadastra um fornecedor' do
     expect(page).to have_content 'Não foi possível gravar o fornecedor'
     expect(page).to have_content "CNPJ já cadastrado"
   end
+  it 'e o CNPJ tem 18 digitos' do
+    # Arranje
+
+    # Act
+    visit root_path
+    click_on 'Cadastrar novo fornecedor'
+    fill_in 'Nome', with: 'Teste'
+    fill_in 'Razão Social', with: 'Teste Ltda'
+    fill_in 'CNPJ', with: '00.000.000/0000'
+    fill_in 'e-mail', with: 'teste@teste.com'
+    click_on 'Gravar'
+    # Assert
+    expect(page).not_to have_content 'Fornecedor registrado com sucesso'
+    expect(page).to have_content 'Não foi possível gravar o fornecedor'
+    expect(page).to have_content "CNPJ não possui o tamanho esperado (18 caracteres)"
+  end
 end
