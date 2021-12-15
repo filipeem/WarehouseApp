@@ -19,19 +19,25 @@ describe 'Vistante abre a tela inicial' do
 
   it 'e vê todos dados cadastrados de um fornecedor' do
     # Arrange -> Preparar o banco de dados
-    Supplier.new(name: 'Blablabla', corporate_name: 'Blablabla Logística Ltda', cnpj: '00.000.000/0001-00', address: 'av. dos Estados',
-                  city: 'Porto Alegre', state: 'RS', email: 'contato@blabla.com.br', phone: '(51) 51515151').save()
+    supplier = Supplier.create!(name: 'Fábrica Geek', corporate_name: 'Geek Comercio de Presentes LTDA',
+                        cnpj: '51.905.325/0001-54', address: 'Avenida Spider Man, 3',
+                        email: 'geekceramicas@gmail.com', phone: '31 3456-7890')
+
+    ProductModel.create!(name: 'Caneca Star Wars', height: '14', width: '10', length: '8',
+                        weight: 300, sku: 'CANSW12032103', supplier: supplier)
+    ProductModel.create!(name: 'Pelúcia Dumbo', height: '50', width: '40', length: '20',
+                        weight: 400, sku: 'PLD9012839210', supplier: supplier)
+
     # Act -> Agir / Executar algo
     visit root_path
     click_on 'Fornecedores'
-    click_on 'Blablabla'
+    click_on 'Fábrica Geek'
     # Assert -> Validar / Esperar que algo aconteça
-    expect(page).to have_content('Blablabla')
-    expect(page).to have_content('Blablabla Logística Ltda')
-    expect(page).to have_content('00.000.000/0001-00')
-    expect(page).to have_content('av. dos Estados')
-    expect(page).to have_content('Porto Alegre/RS')
-    expect(page).to have_content('contato@blabla.com.br')
-    expect(page).to have_content('(51) 51515151')
+    expect(page).to have_css('h1', text: 'Fábrica Geek')
+    expect(page).to have_css('h2', text: 'Produtos deste fornecedor:')
+    expect(page).to have_content('Caneca Star Wars')
+    expect(page).to have_content('CANSW12032103')
+    expect(page).to have_content('Pelúcia Dumbo')
+    expect(page).to have_content('PLD9012839210')
   end
 end
