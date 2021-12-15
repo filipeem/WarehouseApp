@@ -21,7 +21,7 @@
   </div>
   <div>
     <%= form.label :cnpj, 'CNPJ' %>
-    <%= form.text_field(:cnpj) %>
+    <%= form.text_field :cnpj, onkeypress:"$(this).mask('00.000.000/0000-00')" %>
   </div>
   <div>
     <%= form.label :address, 'Endereço' %>
@@ -41,7 +41,7 @@
   </div>
   <div>
     <%= form.label :phone, 'Telefone' %>
-    <%= form.text_field(:phone) %>
+    <%= form.text_field :phone, onkeypress:"$(this).mask('(00) 00000-0000')" %>
   </div>
   <%= form.submit 'Gravar' %>
 <% end %>

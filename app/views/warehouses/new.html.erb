@@ -37,7 +37,7 @@
   </div>
   <div>
     <%= form.label :postal_code, 'CEP' %>
-    <%= form.text_field(:postal_code) %>
+    <%= form.text_field :postal_code, onkeypress:"$(this).mask('00000-000')" %>
   </div>
   <div>
     <%= form.label :total_area, 'Área Total' %>
