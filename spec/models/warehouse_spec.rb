@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Warehouse, type: :model do
-  it 'name é obrigatório' do
+  it 'nome é obrigatório' do
     # Arrange
     warehouse = Warehouse.new(name: '', code: 'MCZ', 
                                description: 'Ótimo galpão mas é frio',

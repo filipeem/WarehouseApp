@@ -48,43 +48,6 @@ describe 'Visitante cadastra um fornecedor' do
     expect(page).to have_content 'Fornecedor registrado com sucesso'
   end
 
-  it 'e os campos Nome, Razão Social, CNPJ e e-mail são obrigatórios' do
-    # Arrange
-
-    # Act
-    visit root_path
-    click_on 'Cadastrar novo fornecedor'
-    fill_in 'Nome', with: ''
-    fill_in 'Razão Social', with: ''
-    fill_in 'CNPJ', with: ''
-    fill_in 'e-mail', with: ''
-    click_on 'Gravar'
-
-    # Assert
-    expect(page).not_to have_content 'Fornecedor registrado com sucesso'
-    expect(page).to have_content 'Não foi possível gravar o fornecedor'
-    expect(page).to have_content "Nome não pode ficar em branco"
-    expect(page).to have_content "Razão Social não pode ficar em branco"
-    expect(page).to have_content "CNPJ não pode ficar em branco"
-    expect(page).to have_content "e-mail não pode ficar em branco"
-  end
-  it 'e o CNPJ deve ser único' do
-    # Arrange
-    Supplier.new(name: 'Blablabla', corporate_name: 'Blablabla Logística Ltda', cnpj: '00.000.000/0001-00', address: 'av. dos Estados',
-                  city: 'Porto Alegre', state: 'RS', email: 'contato@blabla.com.br', phone: '(51) 51515151').save()
-    # Act
-    visit root_path
-    click_on 'Cadastrar novo fornecedor'
-    fill_in 'Nome', with: 'Teste'
-    fill_in 'Razão Social', with: 'Teste Ltda'
-    fill_in 'CNPJ', with: '00.000.000/0001-00'
-    fill_in 'e-mail', with: 'teste@teste.com'
-    click_on 'Gravar'
-    # Assert
-    expect(page).not_to have_content 'Fornecedor registrado com sucesso'
-    expect(page).to have_content 'Não foi possível gravar o fornecedor'
-    expect(page).to have_content "CNPJ já cadastrado"
-  end
   it 'e o CNPJ tem 18 digitos' do
     # Arranje
 
