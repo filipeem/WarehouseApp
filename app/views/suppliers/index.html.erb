@@ -2,6 +2,6 @@
 
 <h2>Fornecedores Cadastrados</h2>
 <% @suppliers.each do |s| %>
-  <%= link_to(s.name, supplier_path(s.id))%>
-  <%= s.email %>
+  <p><%= link_to(s.name, supplier_path(s.id))%>
+  <%= s.email %></p>
 <% end %>

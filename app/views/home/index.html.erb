@@ -5,8 +5,6 @@
 
 <h2>Galpões Cadastrados</h2>
 <% @warehouses.each do |w| %>
-  <%= link_to(w.name, warehouse_path(w.id))%>
-  <%= w.code %>
+  <p><%= link_to(w.name, warehouse_path(w.id))%>
+  <%= w.code %></p>
 <% end %>
-<hr>
-<%= link_to 'Fornecedores', suppliers_path %>
