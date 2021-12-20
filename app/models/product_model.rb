@@ -4,4 +4,6 @@ class ProductModel < ApplicationRecord
   def dimensions
     "#{height} x #{width} x #{length}"
   end
+
+  validates :name, :supplier, :weight, :height, :length, :width, :sku, presence: true
 end
