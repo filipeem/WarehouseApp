@@ -1,6 +1,16 @@
 require 'rails_helper'
 
 describe 'Visitante cadastra um fornecedor' do
+  it 'visitante não vê o menu' do
+    visit root_path
+    expect(page).not_to have_link('Cadastrar novo fornecedor')
+  end
+
+  it 'visitante não acessa diretamente o formulário' do
+    visit new_supplier_path
+
+    expect(current_path).to eq new_user_session_path
+  end
   it 'através de um link na tela inicial' do
     # Arrange
     User.create!(email: 'usuario@email.com', password: '12345678')

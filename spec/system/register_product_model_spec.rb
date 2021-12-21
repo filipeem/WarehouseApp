@@ -1,6 +1,20 @@
 require 'rails_helper'
 
 describe 'Usuário cadastra um modelo de produto' do
+  it 'visitante não vê o menu' do
+    visit root_path
+    expect(page).not_to have_link('Cadastrar modelo de produto')
+  end
+
+  it 'visitante não acessa diretamente o formulário' do
+    # Arrange
+
+    # Act
+    visit new_product_model_path
+
+    # Assert
+    expect(current_path).to eq new_user_session_path
+  end
   it 'com sucesso' do
     # Arrange
     Supplier.create(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
