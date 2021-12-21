@@ -16,7 +16,7 @@ describe 'Usuário cadastra um modelo de produto' do
     fill_in 'Altura', with: '12'
     fill_in 'Largura', with: '8'
     fill_in 'Profundidade', with: '14'
-    fill_in 'Código SKU', with: 'CN203040ABC'
+    fill_in 'Código SKU', with: 'CN203040ABC234567890'
     select 'Cerâmicas Geek', from: 'Fornecedor'
     
     click_on 'Gravar'
@@ -26,7 +26,7 @@ describe 'Usuário cadastra um modelo de produto' do
     expect(page).to have_content 'Caneca Star Wars'
     expect(page).to have_content '300 gramas'
     expect(page).to have_content 'Dimensões: 12 x 8 x 14'
-    expect(page).to have_content 'SKU: CN203040ABC' 
+    expect(page).to have_content 'SKU: CN203040ABC234567890' 
     expect(page).to have_content 'Fornecedor: Cerâmicas Geek'
   end
 end

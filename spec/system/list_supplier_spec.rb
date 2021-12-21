@@ -24,9 +24,9 @@ describe 'Vistante abre a tela inicial' do
                         email: 'geekceramicas@gmail.com', phone: '31 3456-7890')
 
     ProductModel.create!(name: 'Caneca Star Wars', height: '14', width: '10', length: '8',
-                        weight: 300, sku: 'CANSW12032103', supplier: supplier)
+                        weight: 300, sku: 'CANSW120321031234567', supplier: supplier)
     ProductModel.create!(name: 'Pelúcia Dumbo', height: '50', width: '40', length: '20',
-                        weight: 400, sku: 'PLD9012839210', supplier: supplier)
+                        weight: 400, sku: 'PLD90128392101234567', supplier: supplier)
 
     # Act -> Agir / Executar algo
     visit root_path
