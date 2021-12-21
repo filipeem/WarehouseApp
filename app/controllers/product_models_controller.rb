@@ -1,6 +1,7 @@
 require 'securerandom'
 
 class ProductModelsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
   def show
     @product_model = ProductModel.find(params[:id])
   end
