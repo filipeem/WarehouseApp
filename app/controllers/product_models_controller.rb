@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class ProductModelsController < ApplicationController
   def show
     @product_model = ProductModel.find(params[:id])
@@ -5,6 +7,7 @@ class ProductModelsController < ApplicationController
   
   def new
     @product_model = ProductModel.new
+    @random_sku = SecureRandom.hex(10)
   end
   
   def create
