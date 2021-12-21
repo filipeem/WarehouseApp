@@ -23,10 +23,10 @@ describe 'Vistante abre a tela inicial' do
                         cnpj: '51.905.325/0001-54', address: 'Avenida Spider Man, 3',
                         email: 'geekceramicas@gmail.com', phone: '31 3456-7890')
 
-    ProductModel.create!(name: 'Caneca Star Wars', height: '14', width: '10', length: '8',
-                        weight: 300, sku: 'CANSW120321031234567', supplier: supplier)
-    ProductModel.create!(name: 'Pelúcia Dumbo', height: '50', width: '40', length: '20',
-                        weight: 400, sku: 'PLD90128392101234567', supplier: supplier)
+    ProductModel.new(name: 'Caneca Star Wars', height: '14', width: '10', length: '8',
+                        weight: 300, supplier: supplier).save()
+    ProductModel.new(name: 'Pelúcia Dumbo', height: '50', width: '40', length: '20',
+                        weight: 400, supplier: supplier).save()
 
     # Act -> Agir / Executar algo
     visit root_path
@@ -36,8 +36,6 @@ describe 'Vistante abre a tela inicial' do
     expect(page).to have_css('h1', text: 'Fábrica Geek')
     expect(page).to have_css('h2', text: 'Produtos deste fornecedor:')
     expect(page).to have_content('Caneca Star Wars')
-    expect(page).to have_content('CANSW12032103')
     expect(page).to have_content('Pelúcia Dumbo')
-    expect(page).to have_content('PLD9012839210')
   end
 end

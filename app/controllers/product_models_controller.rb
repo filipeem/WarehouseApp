@@ -8,12 +8,11 @@ class ProductModelsController < ApplicationController
   
   def new
     @product_model = ProductModel.new
-    @random_sku = SecureRandom.hex(10)
   end
   
   def create
     product_model_params = params.require(:product_model).permit(:name,  :weight, :length, 
-                                                                  :height, :width,:sku, 
+                                                                  :height, :width, :sku,
                                                                   :supplier_id)
     product_model = ProductModel.new(product_model_params)
     if product_model.save()

@@ -32,10 +32,6 @@
     <%= f.number_field :length %>
   </div>
   <div>
-    <%= f.label :sku, 'Código SKU' %>
-    <%= f.text_field :sku, value: @random_sku %>
-  </div>
-  <div>
     <%= f.label :supplier_id, "Fornecedor" %>
     <%= f.collection_select(:supplier_id, Supplier.all, :id, :name) %>
   </div>
