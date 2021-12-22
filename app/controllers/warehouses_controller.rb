@@ -1,5 +1,5 @@
 class WarehousesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
   def show
     id = params[:id]
@@ -21,6 +21,19 @@ class WarehousesController < ApplicationController
         flash.now[:alert] = 'Não foi possível gravar o galpão'
         render 'new'
     end                               
+  end
+
+  def edit
+    id = params[:id]
+    @warehouse = Warehouse.find(id)
+  end
+
+  def update
+    warehouse_params = params.require(:warehouse).permit(:name, :code, :address, :state, :city,
+                                      :postal_code, :description, :useful_area,
+                                      :total_area )
+    @warehouse = Warehouse.update(warehouse_params)
+    redirect_to warehouse_path, notice: 'Galpão editado com sucesso'
   end
   
 end
