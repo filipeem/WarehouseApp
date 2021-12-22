@@ -23,15 +23,10 @@ describe 'Visitante cadastra um galpão' do
   it 'através de um link na tela inicial' do
     # Arrange
     # Adicionar um usuario e fazer login antes de prosseguir
-    User.create!(email: 'usuario@email.com', password: '12345678')
+    user = User.create!(email: 'usuario@email.com', password: '12345678')
     # Act
+    login_as(user)
     visit root_path
-    click_on 'Entrar'
-    within('form#new_user') do
-      fill_in 'E-mail', with: 'usuario@email.com'
-      fill_in 'Senha', with: '12345678'
-      click_on 'Entrar'
-    end
     click_on 'Cadastrar novo galpão'
 
     # Assert
@@ -50,15 +45,9 @@ describe 'Visitante cadastra um galpão' do
 
   it 'com sucesso' do
     # Arrange
-    User.create!(email: 'usuario@email.com', password: '12345678')
+    user = User.create!(email: 'usuario@email.com', password: '12345678')
     # Act
-    visit root_path
-    click_on 'Entrar'
-    within('form#new_user') do
-      fill_in 'E-mail', with: 'usuario@email.com'
-      fill_in 'Senha', with: '12345678'
-      click_on 'Entrar'
-    end
+    login_as(user)
     visit root_path
     click_on 'Cadastrar novo galpão'
     fill_in 'Nome', with: 'Juiz de Fora'

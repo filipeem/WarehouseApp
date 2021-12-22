@@ -21,15 +21,9 @@ describe 'Usuário cadastra um modelo de produto' do
                     cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
     Supplier.create(name: 'Fábrica de Camisetas', corporate_name: 'Camisas BR ME', cnpj: '01.000.000/0001-01', 
                     email: 'vendas@camisetas.com')
-    User.create!(email: 'usuario@email.com', password: '12345678')
+    user = User.create!(email: 'usuario@email.com', password: '12345678')
     # Act
-    visit root_path
-    click_on 'Entrar'
-    within('form#new_user') do
-      fill_in 'E-mail', with: 'usuario@email.com'
-      fill_in 'Senha', with: '12345678'
-      click_on 'Entrar'
-    end
+    login_as(user)
     visit root_path
     click_on 'Cadastrar modelo de produto'
     fill_in 'Nome', with: 'Caneca Star Wars'
