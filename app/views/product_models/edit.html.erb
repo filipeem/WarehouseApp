@@ -1,0 +1,43 @@
+<h1>Editar Produto</h1>
+
+<% if @product_model.kind_of?(Array)%>
+  <% @product_model.each do |p| %>
+    <% if p.errors.any? %>
+      <span>Verifique os campos abaixo:</span>
+      <ul>
+      <% p.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+<% end %>
+
+
+<%= form_with(model: @product_model) do |f| %>
+  <div>
+    <%= f.label :name, 'Nome' %>
+    <%= f.text_field(:name) %>
+  </div>
+  <div>
+    <%= f.label :weight, 'Peso' %>
+    <%= f.number_field :weight %>
+  </div>
+  <div>
+    <%= f.label :height, 'Altura' %>
+    <%= f.number_field :height %>
+  </div>
+  <div>
+    <%= f.label :width, 'Largura' %>
+    <%= f.number_field :width %>
+  </div>
+  <div>
+    <%= f.label :length, 'Profundidade' %>
+    <%= f.number_field :length %>
+  </div>
+  <div>
+    <%= f.label :supplier_id, "Fornecedor" %>
+    <%= f.collection_select(:supplier_id, Supplier.all, :id, :name) %>
+  </div>
+  <%= f.submit 'Gravar' %>
+<% end %>

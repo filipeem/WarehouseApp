@@ -1,7 +1,7 @@
 require 'securerandom'
 
 class ProductModelsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   def show
     @product_model = ProductModel.find(params[:id])
   end
@@ -20,4 +20,22 @@ class ProductModelsController < ApplicationController
     end
   end
 
+  def edit
+    id = params[:id]
+    @product_model = ProductModel.find(id)
+  end
+
+  def update
+    product_model_params = params.require(:product_model).permit(:name, :weight, :height, :length, :width,
+                                                             :supplier )
+    @product_model = ProductModel.update(product_model_params)
+    @product_model.each do |p| 
+      if p.errors.any?
+        flash.now[:alert] = 'Não foi possível editar o produto'
+        render 'edit'
+      else
+        redirect_to product_model_path, notice: 'Produto editado com sucesso'
+      end
+    end
+  end
 end
