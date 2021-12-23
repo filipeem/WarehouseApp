@@ -33,7 +33,14 @@ class WarehousesController < ApplicationController
                                       :postal_code, :description, :useful_area,
                                       :total_area )
     @warehouse = Warehouse.update(warehouse_params)
-    redirect_to warehouse_path, notice: 'Galpão editado com sucesso'
+    @warehouse.each do |w| 
+      if w.errors.any?
+        flash.now[:alert] = 'Não foi possível editar o galpão'
+        render 'edit'
+      else
+        redirect_to warehouse_path, notice: 'Galpão editado com sucesso'
+      end
+    end
   end
   
 end
