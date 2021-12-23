@@ -1,5 +1,3 @@
-require 'securerandom'
-
 class ProductModelsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   def show
@@ -14,9 +12,12 @@ class ProductModelsController < ApplicationController
     product_model_params = params.require(:product_model).permit(:name,  :weight, :length, 
                                                                   :height, :width, :sku,
                                                                   :supplier_id)
-    product_model = ProductModel.new(product_model_params)
-    if product_model.save()
-      redirect_to product_model, notice: 'Modelo de produto registrado com sucesso'
+    @product_model = ProductModel.new(product_model_params)
+    if @product_model.save()
+      redirect_to product_model_path(@product_model.id), notice: 'Modelo de produto registrado com sucesso'
+    else
+      flash.now[:alert] = 'Não foi possível registrar o produto'
+      render 'new'
     end
   end
 
