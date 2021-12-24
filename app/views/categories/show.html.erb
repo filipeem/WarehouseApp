@@ -1,6 +1,6 @@
 <h1><%= @category.name %></h1>
 
-<h2>Produtos desta Categoria:</h2>
+<h2>Produtos desta categoria:</h2>
 <table>
   <tr>
     <th>Produto</th>
@@ -8,7 +8,7 @@
   </tr>
   <% @category.product_models.each do |p| %>
     <tr>
-      <td><%= p.name %></td>
+      <td><%= link_to(p.name, product_model_path(p.id))%></td>
       <td><%= p.sku %></td>
     </tr>
   <% end %>

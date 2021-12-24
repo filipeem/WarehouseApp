@@ -23,6 +23,7 @@
       <nav>
         <%= link_to '| Início |', root_path %>
         <%= link_to '| Ver Fornecedores |', suppliers_path %>
+        <%= link_to '| Categorias |', categories_path %>
         <% if user_signed_in? %>
           <%= link_to '| Cadastrar novo galpão |', new_warehouse_path %>
           <%= link_to '| Cadastrar novo fornecedor |', new_supplier_path %>
