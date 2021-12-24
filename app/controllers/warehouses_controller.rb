@@ -29,18 +29,19 @@ class WarehousesController < ApplicationController
   end
 
   def update
+    @warehouse = Warehouse.find(params[:id])
     warehouse_params = params.require(:warehouse).permit(:name, :code, :address, :state, :city,
                                       :postal_code, :description, :useful_area,
                                       :total_area )
-    @warehouse = Warehouse.update(warehouse_params)
-    @warehouse.each do |w| 
-      if w.errors.any?
-        flash.now[:alert] = 'Não foi possível editar o galpão'
-        render 'edit'
-      else
+    @warehouse.update(warehouse_params)
+     
+    if @warehouse.errors.any?
+      flash.now[:alert] = 'Não foi possível editar o galpão'
+      render 'edit'
+    else
         redirect_to warehouse_path, notice: 'Galpão editado com sucesso'
-      end
     end
+   
   end
   
 end

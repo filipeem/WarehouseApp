@@ -27,16 +27,16 @@ class ProductModelsController < ApplicationController
   end
 
   def update
+    @product_model = ProductModel.find(params[:id])
     product_model_params = params.require(:product_model).permit(:name, :weight, :height, :length, :width,
                                                              :supplier_id, :category_id )
-    @product_model = ProductModel.update(product_model_params)
-    @product_model.each do |p| 
-      if p.errors.any?
-        flash.now[:alert] = 'Não foi possível editar o produto'
-        render 'edit'
-      else
-        redirect_to product_model_path, notice: 'Produto editado com sucesso'
-      end
+    @product_model.update(product_model_params)
+    if @product_model.errors.any?
+      flash.now[:alert] = 'Não foi possível editar o produto'
+       render 'edit'
+    else
+      redirect_to product_model_path , notice: 'Produto editado com sucesso' and return
+    
     end
   end
 end

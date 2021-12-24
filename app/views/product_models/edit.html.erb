@@ -1,17 +1,16 @@
 <h1>Editar Produto</h1>
 
-<% if @product_model.kind_of?(Array)%>
-  <% @product_model.each do |p| %>
-    <% if p.errors.any? %>
-      <span>Verifique os campos abaixo:</span>
-      <ul>
-      <% p.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+  
+<% if @product_model.errors.any? %>
+  <span>Verifique os campos abaixo:</span>
+  <ul>
+    <% @product_model.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
     <% end %>
-  <% end %>
+  </ul>
 <% end %>
+  
+
 
 
 <%= form_with(model: @product_model) do |f| %>
