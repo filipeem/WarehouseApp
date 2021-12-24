@@ -3,4 +3,10 @@ class ProductBundle < ApplicationRecord
   has_many :product_model, through: :product_bundle_items 
 
   validates :name, presence: true
+
+  before_validation:ensure_sku_is_random
+  private
+    def ensure_sku_is_random
+      self.sku = SecureRandom.hex(10)
+    end
 end
