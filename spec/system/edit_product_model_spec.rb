@@ -5,8 +5,9 @@ describe 'Visitante edita um produto' do
     # Arrange
     supplier = Supplier.create!(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
                                     cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
+    category = Category.create!(name: 'Cozinha')
     product_model = ProductModel.create!(name: 'Caneca', weight: 1, height: 1, length: 1, width: 1, 
-                                         supplier: supplier)
+                                         supplier: supplier, category: category)
     # Act
     visit suppliers_path
     click_on 'Cerâmicas Geek'
@@ -20,9 +21,10 @@ describe 'Visitante edita um produto' do
   it 'através de um botão na tela do fornecedor' do
     # Arrange
     supplier = Supplier.create!(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
-                                    cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
+                                cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
+    category = Category.create!(name: 'Cozinha')
     product_model = ProductModel.create!(name: 'Caneca', weight: 1, height: 1, length: 1, width: 1, 
-                                         supplier: supplier)
+                                        supplier: supplier, category: category)
     # Adicionar um usuario e fazer login antes de prosseguir
     user = User.create!(email: 'usuario@email.com', password: '12345678')
     # Act
@@ -47,8 +49,9 @@ describe 'Visitante edita um produto' do
     # Arrange
     supplier = Supplier.create!(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
                                     cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
+    category = Category.create!(name: 'Cozinha')
     product_model = ProductModel.create!(name: 'Caneca', weight: 1, height: 1, length: 1, width: 1, 
-                                         supplier: supplier)
+                                         supplier: supplier, category: category)
     # Adicionar um usuario e fazer login antes de prosseguir
     user = User.create!(email: 'usuario@email.com', password: '12345678')
     # Act
@@ -74,8 +77,9 @@ describe 'Visitante edita um produto' do
     # Arrange
     supplier = Supplier.create!(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
                                     cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
+    category = Category.create!(name: 'Cozinha')
     product_model = ProductModel.create!(name: 'Caneca', weight: 1, height: 1, length: 1, width: 1, 
-                                         supplier: supplier)
+                                         supplier: supplier, category: category)
     # Adicionar um usuario e fazer login antes de prosseguir
     user = User.create!(email: 'usuario@email.com', password: '12345678')
     # Act

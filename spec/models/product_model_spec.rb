@@ -13,16 +13,18 @@ RSpec.describe ProductModel, type: :model do
     it 'nome é obrigatório' do
         supplier = Supplier.create(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
                                     cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
+        category = Category.create(name: 'Cozinha')
         product_model = ProductModel.new(name: '', weight: 1, height: 1, length: 1, width: 1, 
-                                    sku: 'PRCTMDL0123456789123', supplier: supplier)
+                                         supplier: supplier, category: category)
         
         result = product_model.valid?
     
         expect(result).to eq false
     end
     it 'fornecedor é obrigatório' do
+        category = Category.create(name: 'Cozinha')
         product_model = ProductModel.new(name: '', weight: 1, height: 1, length: 1, width: 1, 
-                                    sku: 'PRCTMDL0123456789123')
+                                         category: category)
         
         result = product_model.valid?
     
@@ -31,8 +33,9 @@ RSpec.describe ProductModel, type: :model do
     it 'Peso é obrigatório' do
         supplier = Supplier.create(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
                                     cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
+        category = Category.create(name: 'Cozinha')
         product_model = ProductModel.new(name: 'Caneca', weight: '', height: 1, length: 1, width: 1, 
-                                    sku: 'PRCTMDL0123456789123', supplier: supplier)
+                                        category: category, supplier: supplier)
         result = product_model.valid?
     
         expect(result).to eq false
@@ -40,8 +43,9 @@ RSpec.describe ProductModel, type: :model do
     it 'Altura é obrigatório' do
         supplier = Supplier.create(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
                                     cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
+        category = Category.create(name: 'Cozinha')
         product_model = ProductModel.new(name: 'Caneca', weight: 1, height: '', length: 1, width: 1, 
-                                    sku: 'PRCTMDL0123456789123', supplier: supplier)
+                                         category: category, supplier: supplier)
         result = product_model.valid?
     
         expect(result).to eq false
@@ -49,8 +53,9 @@ RSpec.describe ProductModel, type: :model do
     it 'Comprimento é obrigatório' do
         supplier = Supplier.create(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
                                     cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
+        category = Category.create(name: 'Cozinha')
         product_model = ProductModel.new(name: 'Caneca', weight: 1, height: 1, length: '', width: 1, 
-                                    sku: 'PRCTMDL0123456789123', supplier: supplier)
+                                        category: category, supplier: supplier)
         result = product_model.valid?
     
         expect(result).to eq false
@@ -58,8 +63,9 @@ RSpec.describe ProductModel, type: :model do
     it 'Largura é obrigatório' do
         supplier = Supplier.create(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
                                     cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
+        category = Category.create(name: 'Cozinha')
         product_model = ProductModel.new(name: 'Caneca', weight: 1, height: 1, length: 1, width: '', 
-                                    sku: 'PRCTMDL0123456789123', supplier: supplier)
+                                        category: category, supplier: supplier)
         result = product_model.valid?
     
         expect(result).to eq false
@@ -67,8 +73,9 @@ RSpec.describe ProductModel, type: :model do
     it 'Peso é maior que zero' do
         supplier = Supplier.create(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
                                     cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
+        category = Category.create(name: 'Cozinha')
         product_model = ProductModel.new(name: 'Caneca', weight: '0', height: 1, length: 1, width: 1, 
-                                    sku: 'PRCTMDL0123456789123', supplier: supplier)
+                                        category: category, supplier: supplier)
         result = product_model.valid?
     
         expect(result).to eq false
@@ -76,8 +83,9 @@ RSpec.describe ProductModel, type: :model do
     it 'Altura é maior que zero' do
         supplier = Supplier.create(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
                                     cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
+        category = Category.create(name: 'Cozinha')
         product_model = ProductModel.new(name: 'Caneca', weight: 1, height: '0', length: 1, width: 1, 
-                                    sku: 'PRCTMDL0123456789123', supplier: supplier)
+                                        category: category, supplier: supplier)
         result = product_model.valid?
     
         expect(result).to eq false
@@ -85,8 +93,9 @@ RSpec.describe ProductModel, type: :model do
     it 'Comprimento é maior que zero' do
         supplier = Supplier.create(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
                                     cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
+        category = Category.create(name: 'Cozinha')
         product_model = ProductModel.new(name: 'Caneca', weight: 1, height: 1, length: '0', width: 1, 
-                                    sku: 'PRCTMDL0123456789123', supplier: supplier)
+                                        category: category, supplier: supplier)
         result = product_model.valid?
     
         expect(result).to eq false
@@ -94,8 +103,9 @@ RSpec.describe ProductModel, type: :model do
     it 'Largura é maior que zero' do
         supplier = Supplier.create(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
                                     cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
+        category = Category.create(name: 'Cozinha')
         product_model = ProductModel.new(name: 'Caneca', weight: 1, height: 1, length: 1, width: '0', 
-                                    sku: 'PRCTMDL0123456789123', supplier: supplier)
+                                        category: category, supplier: supplier)
         result = product_model.valid?
     
         expect(result).to eq false
@@ -103,8 +113,9 @@ RSpec.describe ProductModel, type: :model do
     it 'SKU é obrigatório' do
         supplier = Supplier.create(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
                                     cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
+        category = Category.create(name: 'Cozinha')
         product_model = ProductModel.create!(name: 'Caneca', weight: 1, height: 1, length: 1, width: 1,
-                                         supplier: supplier)
+                                         supplier: supplier, category: category)
         result = product_model.sku
     
         expect(result).not_to eq nil
@@ -112,10 +123,11 @@ RSpec.describe ProductModel, type: :model do
     it 'SKU é único' do
         supplier = Supplier.create(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
                                     cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
+        category = Category.create(name: 'Cozinha')
         product_model1 = ProductModel.create!(name: 'Caneca', weight: 1, height: 1, length: 1, width: 1, 
-                                    sku: '', supplier: supplier)
+                                    sku: '', supplier: supplier, category: category)
         product_model2 = ProductModel.create!(name: 'Caneca', weight: 1, height: 1, length: 1, width: 1, 
-                                    sku: '', supplier: supplier)
+                                    sku: '', supplier: supplier, category: category)
         result1 = product_model1.sku
         result2 = product_model2.sku
     
@@ -124,11 +136,23 @@ RSpec.describe ProductModel, type: :model do
     it 'SKU tem 20 caracteres' do
         supplier = Supplier.create(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
                                     cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
+        category = Category.create(name: 'Cozinha')
         product_model = ProductModel.create!(name: 'Caneca', weight: 1, height: 1, length: 1, width: 1, 
-                                    sku: '', supplier: supplier)
+                                    sku: '', supplier: supplier, category: category)
 
         result = product_model.sku
     
         expect(result.length).to eq 20
+    end
+    it 'Categoria é obrigatório' do
+        supplier = Supplier.create(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
+                                    cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
+        category = Category.create(name: 'Cozinha')
+        product_model = ProductModel.new(name: 'Caneca', weight: 1, height: 1, length: 1, width: 1, 
+                                     supplier: supplier)
+                      
+        result = product_model.valid?
+    
+        expect(result).to eq false
     end
 end

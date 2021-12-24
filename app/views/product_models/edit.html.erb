@@ -39,5 +39,9 @@
     <%= f.label :supplier_id, "Fornecedor" %>
     <%= f.collection_select(:supplier_id, Supplier.all, :id, :name) %>
   </div>
+  <div>
+    <%= f.label :category_id, "Categoria" %>
+    <%= f.collection_select(:category_id, Category.all, :id, :name) %>
+  </div>
   <%= f.submit 'Gravar' %>
 <% end %>

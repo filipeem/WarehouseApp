@@ -1,1 +1,15 @@
 <h1><%= @category.name %></h1>
+
+<h2>Produtos desta Categoria:</h2>
+<table>
+  <tr>
+    <th>Produto</th>
+    <th>SKU</th>
+  </tr>
+  <% @category.product_models.each do |p| %>
+    <tr>
+      <td><%= p.name %></td>
+      <td><%= p.sku %></td>
+    </tr>
+  <% end %>
+</table>

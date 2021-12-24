@@ -10,7 +10,7 @@ class ProductModelsController < ApplicationController
   
   def create
     product_model_params = params.require(:product_model).permit(:name,  :weight, :length, 
-                                                                  :height, :width, :sku,
+                                                                  :height, :width, :category_id,
                                                                   :supplier_id)
     @product_model = ProductModel.new(product_model_params)
     if @product_model.save()
@@ -28,7 +28,7 @@ class ProductModelsController < ApplicationController
 
   def update
     product_model_params = params.require(:product_model).permit(:name, :weight, :height, :length, :width,
-                                                             :supplier )
+                                                             :supplier_id, :category_id )
     @product_model = ProductModel.update(product_model_params)
     @product_model.each do |p| 
       if p.errors.any?
