@@ -203,4 +203,26 @@ RSpec.describe Warehouse, type: :model do
     end
   end
 
+  it 'editar só altera atributo solicitado' do
+    # Arrange
+    warehouse = Warehouse.create!(name: 'Curitiba', code: 'CWB', 
+                               description: 'Ótimo galpão mas é frio',
+                               address: 'Av Coritiba', city: 'Curitiba', state: 'PR',
+                               postal_code: '45000-000',
+                               total_area: 5000, useful_area: 4000)
+    warehouse2 = Warehouse.create!(name: 'Maceió', code: 'MCZ', 
+                               description: 'galpão em Maceió',
+                               address: 'Av Fernandes Lima', city: 'Maceió', state: 'AL',
+                               postal_code: '70000-000',
+                               total_area: 5000, useful_area: 4000)
+    # Act
+    warehouse.update(description: 'descrição atualizada')
+    result = warehouse.description
+    result2 = warehouse2.description
+
+    # Assert
+    expect(result).to eq 'descrição atualizada'
+    expect(result2).to eq 'galpão em Maceió'
+  end
+
 end

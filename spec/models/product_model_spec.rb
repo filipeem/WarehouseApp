@@ -155,4 +155,20 @@ RSpec.describe ProductModel, type: :model do
     
         expect(result).to eq false
     end
+    it 'edita somente o campo solicitado' do
+        supplier = Supplier.create(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
+                                    cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
+        category = Category.create(name: 'Cozinha')
+        product_model1 = ProductModel.new(name: 'Caneca', weight: 1, height: 1, length: 1, width: 1, 
+                                     supplier: supplier, category: category)
+        product_model2 = ProductModel.new(name: 'Caneca2', weight: 1, height: 1, length: 1, width: 1, 
+                                     supplier: supplier, category: category)
+        product_model1.update(name: 'CanecaUpdate')
+                      
+        result = product_model1.name
+        result2 = product_model2.name
+    
+        expect(result).to eq 'CanecaUpdate'
+        expect(result2).to eq 'Caneca2'
+    end
 end
