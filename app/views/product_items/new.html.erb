@@ -1,0 +1,15 @@
+<%= form_with(model: ProductItem.new) do |form| %>
+  <div>
+    <%= form.label :amount, 'Quantidade' %>
+    <%= form.number_field :amount %>
+  </div>
+  <div>
+    <%= form.label :product_model_id, "Produto" %>
+    <%= form.collection_select(:product_model_id, ProductModel.all, :id, :name) %>
+  </div>
+  <div>
+    <%= form.label :warehouse_id, "Galpão Destino" %>
+    <%= form.collection_select(:warehouse_id, Warehouse.all, :id, :code) %>
+  </div>
+  <%= form.submit 'Confirmar' %>
+<% end %>

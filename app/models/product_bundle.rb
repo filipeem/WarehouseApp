@@ -4,6 +4,7 @@ class ProductBundle < ApplicationRecord
 
   validates :name, :sku, presence: true
   validates :sku, uniqueness: true
+  validates :sku, length: { is: 20 }
 
   before_validation:ensure_sku_is_random
   private

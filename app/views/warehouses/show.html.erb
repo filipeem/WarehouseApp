@@ -12,5 +12,10 @@
   <dt>Área Útil:</dt>
   <dd><%= @warehouse.useful_area %> m2</dd>
 </dl>
+<h2>Estoque</h2>
+<dl>
+  <dt>Produto</dt>
+  <dd><%= @warehouse.product_item.produ %></dd>
+</dl>
 
 <%= link_to 'Voltar', root_path %>
