@@ -110,40 +110,75 @@ RSpec.describe ProductModel, type: :model do
     
         expect(result).to eq false
     end
-    it 'SKU é obrigatório' do
+
+    it 'should generate an SKU' do
+        # Arrange
         supplier = Supplier.create(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
                                     cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
-        category = Category.create(name: 'Cozinha')
-        product_model = ProductModel.create!(name: 'Caneca', weight: 1, height: 1, length: 1, width: 1,
-                                         supplier: supplier, category: category)
-        result = product_model.sku
     
-        expect(result).not_to eq nil
+        p = ProductModel.new(name: 'Monitor Gamer', supplier: supplier, weight: '2000',
+                             height: '14', width: '10', length: '12')
+    
+        # Act
+        p.save()
+    
+        # Assert
+        expect(p.sku).not_to eq nil
+        expect(p.sku.length).to eq 20
     end
+    
+    it 'should generate a random SKU' do
+        # Arrange
+        supplier = Supplier.create(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
+                                    cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
+    
+        p = ProductModel.new(name: 'Monitor Gamer', supplier: supplier, weight: '2000',
+                             height: '14', width: '10', length: '12')
+        
+        allow(SecureRandom).to receive(:alphanumeric).with(20).and_return '6WL0esFqq9gQMDGrYBjV'
+    
+        # Act
+        p.save()
+        
+    
+        # Assert
+        expect(p.sku).to eq '6WL0esFqq9gQMDGrYBjV'
+    end
+    
+      it 'should not update sku' do
+        # Arrange
+        supplier = Supplier.create(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
+                                    cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
+    
+        p = ProductModel.new(name: 'Monitor Gamer', supplier: supplier, weight: '2000',
+        height: '14', width: '10', length: '12')
+        p.save()
+        sku = p.sku
+        
+        # Act
+        p.update(name: 'Monitor 4k')
+    
+        # Assert
+        expect(p.name).to eq 'Monitor 4k'
+        expect(p.sku).to eq sku
+    
+      end
+    
     it 'SKU é único' do
+        allow(SecureRandom).to receive(:alphanumeric).with(20).and_return '6WL0esFqq9gQMDGrYBjV'
         supplier = Supplier.create(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
                                     cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
         category = Category.create(name: 'Cozinha')
         product_model1 = ProductModel.create!(name: 'Caneca', weight: 1, height: 1, length: 1, width: 1, 
-                                    sku: '', supplier: supplier, category: category)
-        product_model2 = ProductModel.create!(name: 'Caneca', weight: 1, height: 1, length: 1, width: 1, 
-                                    sku: '', supplier: supplier, category: category)
-        result1 = product_model1.sku
-        result2 = product_model2.sku
+                                    supplier: supplier, category: category)
+        product_model2 = ProductModel.new(name: 'Caneca', weight: 1, height: 1, length: 1, width: 1, 
+                                    supplier: supplier, category: category)
+        
+        result = product_model2.valid?
     
-        expect(result1).not_to eq result2
+        expect(result).to eq false
     end
-    it 'SKU tem 20 caracteres' do
-        supplier = Supplier.create(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
-                                    cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
-        category = Category.create(name: 'Cozinha')
-        product_model = ProductModel.create!(name: 'Caneca', weight: 1, height: 1, length: 1, width: 1, 
-                                    sku: '', supplier: supplier, category: category)
-
-        result = product_model.sku
     
-        expect(result.length).to eq 20
-    end
     it 'Categoria é obrigatório' do
         supplier = Supplier.create(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
                                     cnpj: '00.000.000/0002-00', email: 'contato@geek.com')

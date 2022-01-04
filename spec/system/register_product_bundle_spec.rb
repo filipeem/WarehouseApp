@@ -9,11 +9,11 @@ describe 'Usuário registra um kit' do
                         email: 'contato@miolovinhos.com', phone: '71 1234-5678')
     category = Category.create!(name: 'Bebidas')
     ProductModel.create!(name: 'Vinho Tinto Miolo', height: '30', width: '10', length: '10',
-                         weight: 800, sku: 'VINTI19208', supplier: supplier, category: category)
+                         weight: 800, supplier: supplier, category: category)
     ProductModel.create!(name: 'Vinho Rose Miolo', height: '30', width: '10', length: '10',
-                         weight: 800, sku: 'VINRO48238', supplier: supplier, category: category)
+                         weight: 800, supplier: supplier, category: category)
     ProductModel.create!(name: 'Vinho Branco Miolo', height: '30', width: '10', length: '10',
-                         weight: 800, sku: 'VINBR543401', supplier: supplier, category: category)
+                         weight: 800, supplier: supplier, category: category)
     user = User.create!(email: 'usuario@email.com', password: '12345678')
     # Act
     login_as(user)

@@ -17,6 +17,8 @@ class ProductModel < ApplicationRecord
 
   private
     def ensure_sku_is_random
-      self.sku = SecureRandom.hex(10)
+      if sku.nil?
+        self.sku = SecureRandom.alphanumeric(20)
+      end
     end
 end
