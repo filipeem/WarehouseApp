@@ -3,18 +3,23 @@ class ProductItemsController < ApplicationController
   end
 
   def new
-    @product_item = ProductItem.new
+    @warehouses = Warehouse.all
+    @product_models = ProductModel.all
   end
 
   def create
-    items_amount = params.require(:product_item).permit(:amount)
-    product_item_params = params.require(:product_item).permit(:product_model_id, :warehouse_id)
-    items_amount[:amount].to_i.times do
-      @product_item = ProductItem.new(product_item_params)
-      @product_item.save()
+    amount = params[:amount].to_i
+    warehouse_id = params[:warehouse_id]
+    product_model_id = params[:product_model_id]
+
+    w = Warehouse.find(warehouse_id)
+    pm = ProductModel.find(product_model_id)
+
+    amount.times do 
+      ProductItem.create(warehouse: w, product_model: pm)
     end
 
-    redirect_to warehouse_path(@product_item.warehouse_id), notice: 'Entrada de produtos registrada com sucesso'
+    redirect_to w
     
   end
   
