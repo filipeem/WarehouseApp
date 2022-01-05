@@ -5,4 +5,11 @@ SKU: <%= @product_model.sku %>
 Fornecedor: <%= @product_model.supplier.name %>
 Categoria: <%= @product_model.category.name %>
 <button type="button" class="btn btn-outline-primary"> 
-  <%= link_to 'Editar', edit_product_model_path(@product_model.id) %> </button> 
+  <%= link_to 'Editar', edit_product_model_path(@product_model.id) %> </button>
+<% @items = @product_model.product_items.group(:warehouse).count %>
+        <% @items.each_pair do |warehouse, quantity|%>
+        <div id="product-<%= @product_model.id %>">
+        <td><%= warehouse.name %></td>
+        <td>Quantidade: <%= quantity %></td>
+        </div>
+      <% end %>
