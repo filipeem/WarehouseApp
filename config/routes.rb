@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :categories, only: [:show, :new, :create, :index]
   get 'product_items', to: 'product_items#new'
   post 'product_items', to: 'product_items#create'
+  get 'search', to:"home#search"
 
   
 end
