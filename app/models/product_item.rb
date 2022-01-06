@@ -4,7 +4,7 @@ class ProductItem < ApplicationRecord
 
   before_validation:ensure_code_is_random
 
-  validates :code, presence: true
+  validates :code, :price, :batch, presence: true
   validates :code, uniqueness: true
   validates :code, length: { is: 20 }
   

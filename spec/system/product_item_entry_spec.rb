@@ -24,6 +24,8 @@ describe 'Usuario dá entrada em novos itens' do
     fill_in 'Quantidade', with: 100
     select 'MCZ', from: 'Galpão Destino'
     select 'Pelúcia Dumbo', from: 'Produto'
+    fill_in 'Preço', with: 100
+    fill_in 'Lote', with: 001
     click_on 'Confirmar'
 
     # Assert
@@ -51,7 +53,7 @@ describe 'Usuario dá entrada em novos itens' do
                                     weight: 300, supplier: supplier, category: category)
     
     50.times do
-      ProductItem.create!(product_model: p1, warehouse: w1)
+      ProductItem.create!(product_model: p1, warehouse: w1, price: 100, batch: 001)
     end
     # Act
     login_as(user)
