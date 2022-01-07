@@ -13,7 +13,7 @@ class WarehousesController < ApplicationController
   def create
     warehouse_params = params.require(:warehouse).permit(:name, :code, :address, :state, :city,
                                       :postal_code, :description, :useful_area,
-                                      :total_area )
+                                      :total_area, categories_id: [] )
     @warehouse = Warehouse.new(warehouse_params)
     if @warehouse.save()
         redirect_to warehouse_path(@warehouse.id), notice: 'Galpão registrado com sucesso'

@@ -225,4 +225,22 @@ RSpec.describe Warehouse, type: :model do
     expect(result2).to eq 'galpão em Maceió'
   end
 
+  it 'cadastra muitas categorias em um galpão' do
+    #Arrange
+    c1 = Category.new(name:'Congelados')
+    c2 = Category.new(name:'Vidros')
+    c3 = Category.new(name:'Eletrônicos')
+
+    #Act
+    warehouse = Warehouse.create!(name: 'Curitiba', code: 'CWB', 
+                               description: 'Ótimo galpão mas é frio',
+                               address: 'Av Coritiba', city: 'Curitiba', state: 'PR',
+                               postal_code: '45000-000',
+                               total_area: 5000, useful_area: 4000, categories: [c1,c2])
+    
+    #Assert
+    expect(warehouse.categories).to eq [c1,c2]
+    expect(warehouse.categories).not_to eq c3
+  end
+
 end
