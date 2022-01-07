@@ -33,7 +33,7 @@ describe 'Usuario dá entrada em novos itens' do
     expect(page).to have_css('h2', text: 'Estoque')
     within("div#product-#{p1.id}") do
       expect(page).to have_content('Pelúcia Dumbo')
-      expect(page).to have_content('Quantidade: 100')
+      expect(page).to have_content('Quantidade 100')
     end
   end
   it 'e visualiza estoques no fornecedor' do
