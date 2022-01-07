@@ -12,11 +12,9 @@
   <dt>Área Útil:</dt>
   <dd><%= @warehouse.useful_area %> m2</dd>
   <dt>Categorias:</dt>
-  <dd>
-    <% @categories = @warehouse.categories.select(:name) %>
-      <% @categories.each do |c|%>
+  <dd><% @warehouse.categories.each do |c| %>
         <%= c.name %>
-    <% end %>
+      <% end %>
   </dd>
 </dl>
 <h2>Estoque</h2>

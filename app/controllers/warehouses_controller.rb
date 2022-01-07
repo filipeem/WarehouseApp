@@ -32,7 +32,7 @@ class WarehousesController < ApplicationController
     @warehouse = Warehouse.find(params[:id])
     warehouse_params = params.require(:warehouse).permit(:name, :code, :address, :state, :city,
                                       :postal_code, :description, :useful_area,
-                                      :total_area )
+                                      :total_area, categories_id: [] )
     @warehouse.update(warehouse_params)
      
     if @warehouse.errors.any?
