@@ -227,9 +227,9 @@ RSpec.describe Warehouse, type: :model do
 
   it 'cadastra muitas categorias em um galpão' do
     #Arrange
-    c1 = Category.new(name:'Congelados')
-    c2 = Category.new(name:'Vidros')
-    c3 = Category.new(name:'Eletrônicos')
+    c1 = Category.create!(name:'Congelados')
+    c2 = Category.create!(name:'Vidros')
+    c3 = Category.create!(name:'Eletrônicos')
 
     #Act
     warehouse = Warehouse.create!(name: 'Curitiba', code: 'CWB', 
