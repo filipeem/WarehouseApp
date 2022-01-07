@@ -98,7 +98,7 @@ describe 'Visitante cadastra um galpão' do
     # Assert
     expect(page).to have_content('Congelados')
     expect(page).to have_content('Vidros')
-    expect(page).to have_content('Eletrônicos')
+    expect(page).not_to have_content('Eletrônicos')
     expect(page).to have_content 'Galpão registrado com sucesso'
   end
 
