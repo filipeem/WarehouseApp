@@ -11,5 +11,10 @@ Rails.application.routes.draw do
   get 'product_items', to: 'product_items#new'
   post 'product_items', to: 'product_items#create'
 
-  
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do # versionamento de API
+      resources :warehouses, only: [:index, :show] 
+    end
+  end
+
 end
