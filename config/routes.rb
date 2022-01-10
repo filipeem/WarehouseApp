@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'home#index'
-  resources :warehouses, only: [:show, :new, :create, :edit, :update] do
+  resources :warehouses, only: [:show, :new, :create, :edit, :update, :destroy] do
     get 'search', on: :collection
   end
   resources :suppliers, only: [:show, :new, :create, :index]

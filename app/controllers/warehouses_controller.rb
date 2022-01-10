@@ -1,5 +1,5 @@
 class WarehousesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def show
     id = params[:id]
@@ -50,6 +50,12 @@ class WarehousesController < ApplicationController
     if @warehouses.empty?
       flash.now[:alert] = "Termo #{params[:q]} não encontrado em Galpões"
     end
+  end
+
+  def destroy
+    @warehouse = Warehouse.find(params[:id])
+    @warehouse.destroy
+    redirect_to root_path
   end
   
 end
