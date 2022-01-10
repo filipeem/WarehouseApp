@@ -31,6 +31,27 @@ describe 'Visitante cadastra um fornecedor' do
     expect(page).to have_field 'Telefone'
   end
 
+  it 'com falha' do
+    # Arrange
+    user = User.create!(email: 'usuario@email.com', password: '12345678')
+    # Act
+    login_as(user)
+    visit root_path
+    click_on 'Cadastrar novo fornecedor'
+    fill_in 'Nome', with: 'BlaBlaBla Logística'
+    fill_in 'Razão Social', with: 'BlaBlaBla Logística e transportes LTDA'
+    fill_in 'Endereço', with: 'Av dos Estados'
+    fill_in 'Cidade', with: 'Porto Alegre'
+    fill_in 'Estado', with: 'RS'
+    fill_in 'CNPJ', with: ''
+    fill_in 'e-mail', with: 'contato@blablabla.com.br'
+    fill_in 'Telefone', with: '(51) 5555.5555'
+    click_on 'Gravar'
+
+    # Assert
+    expect(page).to have_content('Não foi possível gravar o fornecedor')
+    
+  end
   it 'com sucesso' do
     # Arrange
     user = User.create!(email: 'usuario@email.com', password: '12345678')

@@ -50,4 +50,19 @@ describe 'Visitante cadastra uma categoria de produto' do
     expect(page).to have_content 'Categoria registrada com sucesso'
   end
 
+  it 'com falha' do
+    # Arrange
+    user = User.create!(email: 'usuario@email.com', password: '12345678')
+    # Act
+    login_as(user)
+    visit root_path
+    click_on 'Cadastrar nova categoria'
+    fill_in 'Nome', with: ''
+    click_on 'Gravar'
+
+    # Assert
+    expect(page).to have_content('Não foi possível registrar a categoria')
+    expect(page).not_to have_content 'Categoria registrada com sucesso'
+  end
+
 end

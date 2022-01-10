@@ -101,5 +101,26 @@ describe 'Visitante cadastra um galpão' do
     expect(page).not_to have_content('Eletrônicos')
     expect(page).to have_content 'Galpão registrado com sucesso'
   end
+  it 'com sucesso' do
+    # Arrange
+    user = User.create!(email: 'usuario@email.com', password: '12345678')
+    # Act
+    login_as(user)
+    visit root_path
+    click_on 'Cadastrar novo galpão'
+    fill_in 'Nome', with: ''
+    fill_in 'Código', with: 'JDF'
+    fill_in 'Endereço', with: 'Av Rio Branco'
+    fill_in 'Cidade', with: 'Juiz de Fora'
+    fill_in 'Estado', with: 'MG'
+    fill_in 'CEP', with: '36000-000'
+    fill_in 'Descrição', with: 'Um galpão mineiro com o pé no Rio'
+    fill_in 'Área Total', with: '5000'
+    fill_in 'Área Útil', with: '3000'
+    click_on 'Gravar'
 
+    # Assert
+    expect(page).to have_content('Não foi possível gravar o galpão')
+    expect(page).not_to have_content 'Galpão registrado com sucesso'
+  end
 end
