@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :warehouses, only: [:show, :new, :create, :edit, :update, :destroy] do
     get 'search', on: :collection
   end
-  resources :suppliers, only: [:show, :new, :create, :index]
+  resources :suppliers, only: [:show, :new, :create, :index, :destroy]
   resources :product_models, only: [:show, :new, :create, :edit, :update, :index, :destroy]
   resources :product_bundles, only: [:show, :new, :create]
   resources :categories, only: [:show, :new, :create, :index]

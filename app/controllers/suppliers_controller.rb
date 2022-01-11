@@ -1,5 +1,5 @@
 class SuppliersController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :destroy]
   def index
     @suppliers = Supplier.all 
   end
@@ -24,4 +24,11 @@ class SuppliersController < ApplicationController
         render 'new'
     end
   end
+
+  def destroy
+    @supplier = Supplier.find(params[:id])
+    @supplier.destroy
+    redirect_to suppliers_path
+  end
+
 end

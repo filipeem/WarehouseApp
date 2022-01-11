@@ -11,7 +11,7 @@ describe 'Visitante edita um produto' do
     # Act
     visit suppliers_path
     click_on 'Cerâmicas Geek'
-    within('button') do
+    within('button#edit') do
       click_on 'Editar'
     end
     # Assert
@@ -31,7 +31,7 @@ describe 'Visitante edita um produto' do
     login_as(user)
     visit suppliers_path
     click_on 'Cerâmicas Geek'
-    within('button') do
+    within('button#edit') do
       click_on 'Editar'
     end
 
@@ -58,7 +58,7 @@ describe 'Visitante edita um produto' do
     login_as(user)
     visit suppliers_path
     click_on 'Cerâmicas Geek'
-    within('button') do
+    within('button#edit') do
       click_on 'Editar'
     end
     fill_in 'Nome', with: 'Nome Atualizado'
@@ -86,7 +86,7 @@ describe 'Visitante edita um produto' do
     login_as(user)
     visit suppliers_path
     click_on 'Cerâmicas Geek'
-    within('button') do
+    within('button#edit') do
       click_on 'Editar'
     end
     fill_in 'Nome', with: ''

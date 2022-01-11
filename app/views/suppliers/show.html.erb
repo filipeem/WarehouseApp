@@ -1,5 +1,8 @@
 <h1><%= @supplier.name %></h1>
 <h2><%= @supplier.corporate_name %></h2>
+<div style='text-align:right'><button id ="delete" type="button" class="btn btn-outline-danger"> 
+                  <%= link_to 'Apagar', supplier_path, method: :delete, 
+                  data: { confirm: 'Quer excluir este fornecedor?' } %></button></div>
 <dl>
   <dt>CNPJ</dt>
   <dd><%= @supplier.cnpj %></dd>
@@ -31,7 +34,7 @@
         </div>
       <% end %>
 
-      <td><button type="button" class="btn btn-outline-primary"> 
+      <td><button id ="edit" type="button" class="btn btn-outline-primary"> 
           <%= link_to 'Editar', edit_product_model_path(p.id) %> </button> </td>
     </tr>
   <% end %>
