@@ -1,5 +1,5 @@
 class ProductModelsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   def index
     @product_models = ProductModel.all 
   end
@@ -40,7 +40,12 @@ class ProductModelsController < ApplicationController
        render 'edit'
     else
       redirect_to product_model_path , notice: 'Produto editado com sucesso' and return
-    
     end
+  end
+
+  def destroy
+    @product_model = ProductModel.find(params[:id])
+    @product_model.destroy
+    redirect_to product_models_path
   end
 end

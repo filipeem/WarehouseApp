@@ -1,4 +1,7 @@
 <h1><%= @product_model.name %></h1>
+<div style='text-align:right'><button id ="delete" type="button" class="btn btn-outline-danger"> 
+                  <%= link_to 'Apagar', product_model_path, method: :delete, 
+                  data: { confirm: 'Quer excluir este produto?' } %></button></div>
 <%= @product_model.weight %> gramas
 Dimensões: <%= @product_model.dimensions %>
 SKU: <%= @product_model.sku %>

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Visitante deleta um galpão', js: true do
+describe 'Visitante deleta um galpão' do
   it 'usuário não logado não consegue deletar galpão' do
     w1 = Warehouse.create!(name: 'Maceió', code: 'MCZ', description: 'Ótimo galpão numa linda cidade',
                           address: 'Av Fernandes Lima', city: 'Maceió', state: 'AL', postal_code: '57050-000',
