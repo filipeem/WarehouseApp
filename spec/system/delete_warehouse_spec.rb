@@ -40,7 +40,6 @@ describe 'Visitante deleta um galpão', js: true do
       click_on 'Apagar'
     end
     
-    
     expect(page).not_to have_content 'Maceió'
     expect(page).to have_content 'São Paulo'
     expect(page).to have_content 'São Luiz'

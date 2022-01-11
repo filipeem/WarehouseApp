@@ -1,6 +1,7 @@
 <h1><%= @warehouse.name %></h1>
 <div style='text-align:right'><button type="button" class="btn btn-outline-danger"> 
-                  <%= link_to 'Apagar', warehouse_path, method: :delete %></button></div>
+                  <%= link_to 'Apagar', warehouse_path, method: :delete, 
+                  data: { confirm: 'Quer apagar esta tarefa?' } %></button></div>
 <h2><%= @warehouse.code %></h2>
 <dl>
   <dt>Descrição</dt>
