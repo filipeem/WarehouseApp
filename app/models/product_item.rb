@@ -7,6 +7,7 @@ class ProductItem < ApplicationRecord
   validates :code, :price, :batch, presence: true
   validates :code, uniqueness: true
   validates :code, length: { is: 20 }
+  validates_with ItemValidator
   
   private
     def ensure_code_is_random
@@ -14,4 +15,5 @@ class ProductItem < ApplicationRecord
         self.code = SecureRandom.alphanumeric(20)
       end
     end
+    
 end

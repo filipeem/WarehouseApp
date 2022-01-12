@@ -1,16 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe ProductItem, type: :model do
-  it 'should generate an code' do
+  it 'should generate a code' do
     # Arrange
+    category = Category.create(name: 'Geral')
     w1 = Warehouse.create(name: 'Maceió', code: 'MCZ', description: 'Ótimo galpão numa linda cidade',
                      address: 'Av Fernandes Lima', city: 'Maceió', state: 'AL',
                      postal_code: '57050-000',
-                     total_area: 10000, useful_area: 8000)
+                     total_area: 10000, useful_area: 8000, categories: [category])
     supplier = Supplier.create(name: 'Samsung', corporate_name: 'Samsung do BR LTDA',
                                 cnpj: '85.935.972/0001-20', address: 'Av Industrial, 1000, São Paulo',
                                 email: 'financeiro@samsung.com.br', phone: '11 1234-5678')
-    category = Category.create(name: 'Geral')
+    
     p1 = ProductModel.create!(name: 'Pelúcia Dumbo', height: '50', width: '40', length: '20',
                                   weight: 400, supplier: supplier, category: category)
 
@@ -24,14 +25,15 @@ RSpec.describe ProductItem, type: :model do
 
   it 'should generate a random code' do
     # Arrange
+    category = Category.create(name: 'Geral')
     w1 = Warehouse.create(name: 'Maceió', code: 'MCZ', description: 'Ótimo galpão numa linda cidade',
                      address: 'Av Fernandes Lima', city: 'Maceió', state: 'AL',
                      postal_code: '57050-000',
-                     total_area: 10000, useful_area: 8000)
+                     total_area: 10000, useful_area: 8000, categories: [category])
     supplier = Supplier.create(name: 'Samsung', corporate_name: 'Samsung do BR LTDA',
                                 cnpj: '85.935.972/0001-20', address: 'Av Industrial, 1000, São Paulo',
                                 email: 'financeiro@samsung.com.br', phone: '11 1234-5678')
-    category = Category.create(name: 'Geral')
+    
     p1 = ProductModel.create!(name: 'Pelúcia Dumbo', height: '50', width: '40', length: '20',
                                   weight: 400, supplier: supplier, category: category)
     
@@ -44,15 +46,15 @@ RSpec.describe ProductItem, type: :model do
 end
 
   it 'Código é único' do
-    
+    category = Category.create(name: 'Geral')
     w1 = Warehouse.create(name: 'Maceió', code: 'MCZ', description: 'Ótimo galpão numa linda cidade',
                      address: 'Av Fernandes Lima', city: 'Maceió', state: 'AL',
                      postal_code: '57050-000',
-                     total_area: 10000, useful_area: 8000)
+                     total_area: 10000, useful_area: 8000, categories: [category])
     supplier = Supplier.create(name: 'Samsung', corporate_name: 'Samsung do BR LTDA',
                                 cnpj: '85.935.972/0001-20', address: 'Av Industrial, 1000, São Paulo',
                                 email: 'financeiro@samsung.com.br', phone: '11 1234-5678')
-    category = Category.create(name: 'Geral')
+    
     p1 = ProductModel.create!(name: 'Pelúcia Dumbo', height: '50', width: '40', length: '20',
                                   weight: 400, supplier: supplier, category: category)
     
@@ -66,14 +68,15 @@ end
   end
 
   it 'lote é obrigatório' do
+    category = Category.create!(name: 'Geral')
     w1 = Warehouse.create!(name: 'Maceió', code: 'MCZ', description: 'Ótimo galpão numa linda cidade',
                      address: 'Av Fernandes Lima', city: 'Maceió', state: 'AL',
                      postal_code: '57050-000',
-                     total_area: 10000, useful_area: 8000)
+                     total_area: 10000, useful_area: 8000, categories: [category])
     supplier = Supplier.create!(name: 'Samsung', corporate_name: 'Samsung do BR LTDA',
                                 cnpj: '85.935.972/0001-20', address: 'Av Industrial, 1000, São Paulo',
                                 email: 'financeiro@samsung.com.br', phone: '11 1234-5678')
-    category = Category.create!(name: 'Geral')
+    
     p1 = ProductModel.create!(name: 'Pelúcia Dumbo', height: '50', width: '40', length: '20',
                                   weight: 400, supplier: supplier, category: category)
 
@@ -85,18 +88,40 @@ end
   end
 
   it 'preço é obrigatório' do
+    category = Category.create!(name: 'Geral')
     w1 = Warehouse.create!(name: 'Maceió', code: 'MCZ', description: 'Ótimo galpão numa linda cidade',
                      address: 'Av Fernandes Lima', city: 'Maceió', state: 'AL',
                      postal_code: '57050-000',
-                     total_area: 10000, useful_area: 8000)
+                     total_area: 10000, useful_area: 8000, categories: [category])
     supplier = Supplier.create!(name: 'Samsung', corporate_name: 'Samsung do BR LTDA',
                                 cnpj: '85.935.972/0001-20', address: 'Av Industrial, 1000, São Paulo',
                                 email: 'financeiro@samsung.com.br', phone: '11 1234-5678')
-    category = Category.create!(name: 'Geral')
+    
     p1 = ProductModel.create!(name: 'Pelúcia Dumbo', height: '50', width: '40', length: '20',
                                   weight: 400, supplier: supplier, category: category)
 
     item = ProductItem.new(product_model: p1, warehouse: w1, price: '', batch: 001)
+
+    result = item.valid?
+
+    expect(result).to eq false
+  end
+
+  it 'só pode ser cadastrado em galpões com mesma categoria' do
+    category1 = Category.create!(name: 'Brinquedos')
+    category2 = Category.create!(name: 'Alimentos')
+    w1 = Warehouse.create!(name: 'Maceió', code: 'MCZ', description: 'Ótimo galpão numa linda cidade',
+                     address: 'Av Fernandes Lima', city: 'Maceió', state: 'AL',
+                     postal_code: '57050-000',
+                     total_area: 10000, useful_area: 8000, categories: [category2])
+    supplier = Supplier.create!(name: 'Samsung', corporate_name: 'Samsung do BR LTDA',
+                                cnpj: '85.935.972/0001-20', address: 'Av Industrial, 1000, São Paulo',
+                                email: 'financeiro@samsung.com.br', phone: '11 1234-5678')
+    
+    p1 = ProductModel.create!(name: 'Pelúcia Dumbo', height: '50', width: '40', length: '20',
+                                  weight: 400, supplier: supplier, category: category1)
+
+    item = ProductItem.new(product_model: p1, warehouse: w1, price: '50', batch: 001)
 
     result = item.valid?
 
