@@ -112,6 +112,27 @@ describe 'Warehouse API' do
       expect(response.status).to eq 422
       expect(response.body).to include 'Nome não pode ficar em branco'
     end
+
+    it 'code is not unique' do
+      Warehouse.create!(name: 'Maceió', code: 'MCZ', description: 'Ótimo galpão numa linda cidade',
+                        address: 'Av Fernandes Lima', city: 'Maceió', state: 'AL',
+                        postal_code: '57050-000', total_area: 10000, useful_area: 8000)
+      
+      headers = { "CONTENT_TYPE" => "application/json" }
+      post '/api/v1/warehouses', params: '{ "name": "Aeroporto Maceió",
+                                            "code": "MCZ",
+                                            "description": "Ótimo galpão numa linda cidade",
+                                            "address": "Avenida dos Galpões, 1000",
+                                            "city": "Maceió",
+                                            "state": "AL",
+                                            "postal_code": "57050-000",
+                                            "total_area": 10000,
+                                            "useful_area": 8000 }',
+                                  headers: headers
+      expect(response.status).to eq 422
+      expect(response.body).to include 'Código já está em uso'
+    end
+
   end
 
 end

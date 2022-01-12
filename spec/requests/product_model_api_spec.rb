@@ -72,5 +72,24 @@ describe 'ProductModel API' do
       # Assert
       expect(response.status).to eq 404
     end
+
+    it 'database error - 500' do
+      # Arrange
+      supplier = Supplier.create!(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
+                                    cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
+      category = Category.create!(name: 'Cozinha')
+
+      p = ProductModel.create!(name: 'Caneca Star Wars', weight: 50, height: 10, length: 6, width: 6, 
+                               supplier: supplier, category: category)
+      allow(ProductModel).to receive(:find).with(p.id.to_s).and_raise ActiveRecord::ConnectionNotEstablished
+      # Act
+      get("/api/v1/product_models/#{p.id}")
+
+      # Assert
+      expect(response.status).to eq 500
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response["error"]).to eq 'Não foi possível conectar ao banco de dados'
+    end
+
   end
 end
