@@ -66,4 +66,59 @@ describe 'Supplier API' do
       expect(response.status).to eq 404
     end
   end
+
+  context 'POST /api/v1/suppliers' do
+    it 'successfully' do
+      # Arrange
+     
+      # Act
+      headers = { "CONTENT_TYPE" => "application/json" }
+      post '/api/v1/suppliers', params: '{ "name": "Samsung",
+                                            "corporate_name": "SAMSUNG ELETRONICA DA AMAZONIA LTDA",
+                                            "cnpj": "00.280.273/0001-37",
+                                            "email": "financeiro@samsung.com.br"}',
+                                 headers: headers
+
+      # Assert
+      expect(response.status).to eq 201
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response["name"]).to eq 'Samsung'
+      expect(parsed_response["cnpj"]).to eq '00.280.273/0001-37'
+      expect(parsed_response["id"]).to be_a_kind_of(Integer)
+    end
+
+    it 'has required fields' do
+      # Arrange
+      
+      # Act
+      headers = { "CONTENT_TYPE" => "application/json" }
+      post '/api/v1/suppliers', params: '{ "name": "",
+                                            "corporate_name": "SAMSUNG ELETRONICA DA AMAZONIA LTDA",
+                                            "cnpj": "00.280.273/0001-37",
+                                            "email": "financeiro@samsung.com.br"}',
+                                 headers: headers
+
+      # Assert
+      expect(response.status).to eq 422
+      expect(response.body).to include 'Nome não pode ficar em branco'
+    end
+
+    it 'CNPJ is unique' do
+      # Arrange
+      Supplier.create!(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
+      cnpj: '00.280.273/0001-37', email: 'contato@geek.com')
+      # Act
+      headers = { "CONTENT_TYPE" => "application/json" }
+      post '/api/v1/suppliers', params: '{ "name": "Samsung",
+                                            "corporate_name": "SAMSUNG ELETRONICA DA AMAZONIA LTDA",
+                                            "cnpj": "00.280.273/0001-37",
+                                            "email": "financeiro@samsung.com.br"}',
+                                 headers: headers
+
+      # Assert
+      expect(response.status).to eq 422
+      expect(response.body).to include 'CNPJ  já cadastrado'
+    end
+
+  end
 end
