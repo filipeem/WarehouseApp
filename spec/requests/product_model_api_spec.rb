@@ -92,4 +92,52 @@ describe 'ProductModel API' do
     end
 
   end
+
+  context 'POST /api/v1/product_models' do
+    it 'successfully' do
+      # Arrange
+      supplier = Supplier.create!(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
+                                    cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
+      category = Category.create!(name: 'Cozinha')
+      # Act
+      headers = { "CONTENT_TYPE" => "application/json" }
+      post '/api/v1/product_models', params: '{ "name": "Caneca Star Wars",
+                                            "weight": "50",
+                                            "height": "10",
+                                            "length": "6",
+                                            "width": "6",
+                                            "supplier_id": "1",
+                                            "category_id": "1" }',
+                                 headers: headers
+
+      # Assert
+      expect(response.status).to eq 201
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response["name"]).to eq 'Caneca Star Wars'
+      expect(parsed_response["supplier_id"]).to eq 1
+      expect(parsed_response["id"]).to be_a_kind_of(Integer)
+    end
+
+    it 'has required fields' do
+      # Arrange
+      supplier = Supplier.create!(name: 'Cerâmicas Geek', corporate_name: 'Geek Comercio de Ceramicas LTDA', 
+                                    cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
+      category = Category.create!(name: 'Cozinha')
+      # Act
+      headers = { "CONTENT_TYPE" => "application/json" }
+      post '/api/v1/product_models', params: '{ "name": "",
+                                            "weight": "50",
+                                            "height": "10",
+                                            "length": "6",
+                                            "width": "6",
+                                            "supplier": {"id":"1", "name": "Cerâmicas Geek", "corporate_name": "Geek Comercio de Ceramicas LTDA","cnpj": "00.000.000/0002-00", "email": "contato@geek.com" },
+                                            "category": {"id":"1","name": "Cozinha"}}',
+                                 headers: headers
+
+      # Assert
+      expect(response.status).to eq 422
+      expect(response.body).to include 'Nome não pode ficar em branco'
+    end
+
+  end
 end

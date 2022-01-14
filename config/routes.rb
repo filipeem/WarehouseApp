@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     namespace :v1 do # versionamento de API
       resources :warehouses, only: [:index, :show, :create]
       resources :suppliers, only: [:index, :show] 
-      resources :product_models, only: [:index, :show]
+      resources :product_models, only: [:index, :show, :create]
     end
   end
 
