@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Usuário faz login' do
   it 'com sucesso' do
     # Arrange
-    user = create(:user)
+    user = create(:user, email: 'usuario@email.com')
     # Act
     visit root_path
     click_on 'Entrar'
@@ -22,7 +22,7 @@ describe 'Usuário faz login' do
 
   it 'e faz logout' do
     # Arrange
-    user = create(:user)
+    user = create(:user, email: 'usuario@email.com')
     # Act
     visit root_path
     click_on 'Entrar'
