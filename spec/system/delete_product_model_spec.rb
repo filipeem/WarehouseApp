@@ -34,7 +34,7 @@ describe 'Visitante deleta um produto' do
                          weight: 800, supplier: supplier, category: category)
     p3 = ProductModel.create!(name: 'Vinho Branco Miolo', height: '30', width: '10', length: '10',
                          weight: 800, supplier: supplier, category: category)
-    user = User.create!(email: 'usuario@email.com', password: '12345678')
+    user = create(:user)
 
     login_as(user)
     visit root_path

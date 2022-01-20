@@ -23,7 +23,7 @@ describe 'Visitante cadastra um galpão' do
   it 'através de um link na tela inicial' do
     # Arrange
     # Adicionar um usuario e fazer login antes de prosseguir
-    user = User.create!(email: 'usuario@email.com', password: '12345678')
+    user = create(:user)
     # Act
     login_as(user)
     visit root_path
@@ -45,7 +45,7 @@ describe 'Visitante cadastra um galpão' do
 
   it 'com sucesso' do
     # Arrange
-    user = User.create!(email: 'usuario@email.com', password: '12345678')
+    user = create(:user)
     # Act
     login_as(user)
     visit root_path
@@ -74,7 +74,7 @@ describe 'Visitante cadastra um galpão' do
   end
   it 'e escolhe categorias' do
     # Arrange
-    user = User.create!(email: 'usuario@email.com', password: '12345678')
+    user = create(:user)
     c1 = Category.create!(name:'Congelados')
     c2 = Category.create!(name:'Vidros')
     c3 = Category.create!(name:'Eletrônicos')
@@ -103,7 +103,7 @@ describe 'Visitante cadastra um galpão' do
   end
   it 'com sucesso' do
     # Arrange
-    user = User.create!(email: 'usuario@email.com', password: '12345678')
+    user = create(:user)
     # Act
     login_as(user)
     visit root_path

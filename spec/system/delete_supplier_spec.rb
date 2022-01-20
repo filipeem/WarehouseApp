@@ -26,7 +26,7 @@ describe 'Visitante deleta um fornecedor' do
     supplier2 = Supplier.create!(name: 'Vinícola Garibaldi', corporate_name: 'Garibaldi Fábrica de Bebidas LTDA',
                                 cnpj: '01.005.325/0001-54', address: 'Avenida Cabernet, 500',
                                 email: 'contato@garibaldi.com', phone: '54 1234-5678')
-    user = User.create!(email: 'usuario@email.com', password: '12345678')
+    user = create(:user)
 
     login_as(user)
     visit root_path

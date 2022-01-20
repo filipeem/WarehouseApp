@@ -33,7 +33,7 @@ describe 'Visitante cadastra um fornecedor' do
 
   it 'com falha' do
     # Arrange
-    user = User.create!(email: 'usuario@email.com', password: '12345678')
+    user = create(:user)
     # Act
     login_as(user)
     visit root_path
@@ -54,7 +54,7 @@ describe 'Visitante cadastra um fornecedor' do
   end
   it 'com sucesso' do
     # Arrange
-    user = User.create!(email: 'usuario@email.com', password: '12345678')
+    user = create(:user)
     # Act
     login_as(user)
     visit root_path

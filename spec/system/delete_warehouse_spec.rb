@@ -31,7 +31,7 @@ describe 'Visitante deleta um galpão' do
     w3 = Warehouse.create!(name: 'São Luiz', code: 'SLZ', description: 'Galpão no Maranhão', 
                           address: 'Av dos Libaneses,', city: 'São Luiz', state: 'MA',
                           postal_code: '65000-000', total_area: 10000, useful_area: 8000)
-    user = User.create!(email: 'usuario@email.com', password: '12345678')
+    user = create(:user)
 
     visit root_path
     login_as(user)

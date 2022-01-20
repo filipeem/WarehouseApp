@@ -4,7 +4,7 @@ describe 'Usuario dá entrada em novos itens' do
   it 'com sucesso' do
     # Arrange
     category = Category.create(name: 'Geral')
-    user = User.create(email: 'admin@email.com', password: '12345678')
+    user = create(:user)
     w1 = Warehouse.create(name: 'Maceió', code: 'MCZ', description: 'Ótimo galpão numa linda cidade',
                      address: 'Av Fernandes Lima', city: 'Maceió', state: 'AL',
                      postal_code: '57050-000',
@@ -39,7 +39,7 @@ describe 'Usuario dá entrada em novos itens' do
   end
   it 'e visualiza estoques no fornecedor' do
     # Arrange
-    user = User.create(email: 'admin@email.com', password: '12345678')
+    user = create(:user)
     category = Category.create!(name: 'Geral')
     w1 = Warehouse.create(name: 'Maceió', code: 'MCZ', description: 'Ótimo galpão numa linda cidade',
                      address: 'Av Fernandes Lima', city: 'Maceió', state: 'AL',

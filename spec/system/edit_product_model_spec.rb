@@ -26,7 +26,7 @@ describe 'Visitante edita um produto' do
     product_model = ProductModel.create!(name: 'Caneca', weight: 1, height: 1, length: 1, width: 1, 
                                         supplier: supplier, category: category)
     # Adicionar um usuario e fazer login antes de prosseguir
-    user = User.create!(email: 'usuario@email.com', password: '12345678')
+    user = create(:user)
     # Act
     login_as(user)
     visit suppliers_path
@@ -53,7 +53,7 @@ describe 'Visitante edita um produto' do
     product_model = ProductModel.create!(name: 'Caneca', weight: 1, height: 1, length: 1, width: 1, 
                                          supplier: supplier, category: category)
     # Adicionar um usuario e fazer login antes de prosseguir
-    user = User.create!(email: 'usuario@email.com', password: '12345678')
+    user = create(:user)
     # Act
     login_as(user)
     visit suppliers_path
@@ -81,7 +81,7 @@ describe 'Visitante edita um produto' do
     product_model = ProductModel.create!(name: 'Caneca', weight: 1, height: 1, length: 1, width: 1, 
                                          supplier: supplier, category: category)
     # Adicionar um usuario e fazer login antes de prosseguir
-    user = User.create!(email: 'usuario@email.com', password: '12345678')
+    user = create(:user)
     # Act
     login_as(user)
     visit suppliers_path

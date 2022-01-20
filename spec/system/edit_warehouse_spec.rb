@@ -25,7 +25,7 @@ describe 'Visitante edita um galpão' do
                                postal_code: '45000-000',
                                total_area: 5000, useful_area: 4000)
     # Adicionar um usuario e fazer login antes de prosseguir
-    user = User.create!(email: 'usuario@email.com', password: '12345678')
+    user = create(:user)
     # Act
     login_as(user)
     visit root_path
@@ -50,7 +50,7 @@ describe 'Visitante edita um galpão' do
                                postal_code: '45000-000',
                                total_area: 5000, useful_area: 4000)
     # Adicionar um usuario e fazer login antes de prosseguir
-    user = User.create!(email: 'usuario@email.com', password: '12345678')
+    user = create(:user)
     # Act
     login_as(user)
     visit root_path
@@ -79,7 +79,7 @@ describe 'Visitante edita um galpão' do
                                postal_code: '45000-000',
                                total_area: 5000, useful_area: 4000)
     # Adicionar um usuario e fazer login antes de prosseguir
-    user = User.create!(email: 'usuario@email.com', password: '12345678')
+    user = create(:user)
     # Act
     login_as(user)
     visit root_path

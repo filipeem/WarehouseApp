@@ -23,7 +23,7 @@ describe 'Usuário cadastra um modelo de produto' do
                     email: 'vendas@camisetas.com')
     Category.create!(name: 'Cozinha')
     Category.create!(name: 'Vestuário')
-    user = User.create!(email: 'usuario@email.com', password: '12345678')
+    user = create(:user)
     # Act
     login_as(user)
     visit root_path
@@ -53,7 +53,7 @@ describe 'Usuário cadastra um modelo de produto' do
                     email: 'vendas@camisetas.com')
     Category.create!(name: 'Cozinha')
     Category.create!(name: 'Vestuário')
-    user = User.create!(email: 'usuario@email.com', password: '12345678')
+    user = create(:user)
     # Act
     login_as(user)
     visit root_path

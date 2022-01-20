@@ -14,7 +14,7 @@ describe 'Usuário registra um kit' do
                          weight: 800, supplier: supplier, category: category)
     ProductModel.create!(name: 'Vinho Branco Miolo', height: '30', width: '10', length: '10',
                          weight: 800, supplier: supplier, category: category)
-    user = User.create!(email: 'usuario@email.com', password: '12345678')
+    user = create(:user)
     # Act
     login_as(user)
     visit root_path
@@ -41,7 +41,7 @@ describe 'Usuário registra um kit' do
                          weight: 800, supplier: supplier, category: category)
     ProductModel.create!(name: 'Vinho Branco Miolo', height: '30', width: '10', length: '10',
                          weight: 800, supplier: supplier, category: category)
-    user = User.create!(email: 'usuario@email.com', password: '12345678')
+    user = create(:user)
     # Act
     login_as(user)
     visit root_path

@@ -23,7 +23,7 @@ describe 'Visitante cadastra uma categoria de produto' do
   it 'através de um link na tela inicial' do
     # Arrange
     # Adicionar um usuario e fazer login antes de prosseguir
-    user = User.create!(email: 'usuario@email.com', password: '12345678')
+    user = create(:user)
     # Act
     login_as(user)
     visit root_path
@@ -37,7 +37,7 @@ describe 'Visitante cadastra uma categoria de produto' do
 
   it 'com sucesso' do
     # Arrange
-    user = User.create!(email: 'usuario@email.com', password: '12345678')
+    user = create(:user)
     # Act
     login_as(user)
     visit root_path
@@ -52,7 +52,7 @@ describe 'Visitante cadastra uma categoria de produto' do
 
   it 'com falha' do
     # Arrange
-    user = User.create!(email: 'usuario@email.com', password: '12345678')
+    user = create(:user)
     # Act
     login_as(user)
     visit root_path
