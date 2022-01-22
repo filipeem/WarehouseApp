@@ -1,7 +1,12 @@
 class ProductModelsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, 
+                                            :disabled, :show_disabled]
   def index
-    @product_models = ProductModel.all 
+    @product_models = ProductModel.active
+  end
+
+  def show_disabled
+    @product_models = ProductModel.disabled
   end
   
   def show
@@ -47,5 +52,17 @@ class ProductModelsController < ApplicationController
     @product_model = ProductModel.find(params[:id])
     @product_model.destroy
     redirect_to product_models_path
+  end
+
+  def disabled
+    @product_model = ProductModel.find(params[:format])
+    @product_model.disabled!
+    redirect_to product_models_path,  notice: 'produto inativado com sucesso'
+  end
+
+  def activate
+    @product_model = ProductModel.find(params[:format])
+    @product_model.active!
+    redirect_to product_models_path,  notice: 'produto ativado com sucesso'
   end
 end

@@ -102,4 +102,35 @@ describe 'Visitante edita um produto' do
     
   end
 
+  it 'um usuário consegue trocar o status para inativo' do
+    product_model1 = create(:product_model, name:'TV 4k')
+    product_model2 = create(:product_model, name:'Geladeira')
+    user = create(:user)
+    
+    login_as(user)
+    visit product_models_path
+    click_on 'TV 4k'
+    click_on 'Inativar'
+    
+
+    expect(page).not_to have_content 'TV 4k'
+    expect(page).to have_content 'produto inativado com sucesso'
+    expect(page).to have_content 'Geladeira'
+  end
+  it 'um usuário consegue trocar o status para ativo' do
+    product_model1 = create(:product_model, name:'TV 4k')
+    product_model2 = create(:product_model, name:'Geladeira')
+    user = create(:user)
+    product_model1.disabled!
+    
+    login_as(user)
+    visit product_models_path
+    click_on 'Ver produtos Inativos'
+    click_on 'ativar'
+    
+
+    expect(page).to have_content 'TV 4k'
+    expect(page).to have_content 'produto ativado com sucesso'
+    expect(page).to have_content 'Geladeira'
+  end
 end

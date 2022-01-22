@@ -5,7 +5,11 @@ Rails.application.routes.draw do
     get 'search', on: :collection
   end
   resources :suppliers, only: [:show, :new, :create, :index, :destroy]
-  resources :product_models, only: [:show, :new, :create, :edit, :update, :index, :destroy]
+  resources :product_models, only: [:show, :new, :create, :edit, :update, :index, :destroy] do
+    patch :disabled, on: :collection
+    patch :activate, on: :collection
+    get :show_disabled, on: :collection
+  end
   resources :product_bundles, only: [:show, :new, :create]
   resources :categories, only: [:show, :new, :create, :index]
   get 'product_items', to: 'product_items#new'

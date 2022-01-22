@@ -8,7 +8,10 @@ SKU: <%= @product_model.sku %>
 Fornecedor: <%= @product_model.supplier.name %>
 Categoria: <%= @product_model.category.name %>
 <button type="button" class="btn btn-outline-primary"> 
-  <%= link_to 'Editar', edit_product_model_path(@product_model.id) %> </button>
+  <%= link_to 'Editar', edit_product_model_path(@product_model.id) %> 
+</button>
+<%= button_to 'Inativar', disabled_product_models_path(@product_model.id), {method:'patch'} %>
+
 <% @items = @product_model.product_items.group(:warehouse).count %>
         <% @items.each_pair do |warehouse, quantity|%>
         <div id="product-<%= @product_model.id %>">

@@ -22,4 +22,17 @@ describe 'Visitante abre a tela inicial' do
   
   end
 
+  it 'Usuário logado vê modelos de produto inativos' do
+    product_model1 = create(:product_model, name:'TV 4k')
+    product_model2 = create(:product_model, name:'Geladeira')
+    product_model1.disabled!
+    user = create(:user)
+  
+    login_as(user)
+    visit product_models_path
+    click_on 'Ver produtos Inativos'
+
+    expect(page).to have_content('TV 4k')
+    expect(page).to have_content('inativo')
+  end
 end
