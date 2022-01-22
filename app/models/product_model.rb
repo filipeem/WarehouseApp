@@ -5,6 +5,8 @@ class ProductModel < ApplicationRecord
   has_many :product_bundles, through: :product_bundle_items
   has_many :product_items
 
+  enum status: { active: 0, disabled: 1 }
+
   before_validation:ensure_sku_is_random
 
   def dimensions

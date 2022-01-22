@@ -128,4 +128,21 @@ end
     expect(result).to eq false
   end
 
+  it 'não pode conter um modelo de produto inativo' do
+    #arrange
+    category = create(:category)
+    warehouse = create(:warehouse)
+    warehouse.categories = [category]
+    product_model = create(:product_model)
+    #act
+    product_model.disabled!
+    item = ProductItem.new(product_model: product_model, warehouse: warehouse, 
+                            price: '5000', batch: 001)
+    #assert
+    result = item.valid?
+
+    expect(result).to eq false
+    expect(item.errors.full_messages).to include 'Product model Modelo de produto inativo'
+  end
+
 end

@@ -206,4 +206,12 @@ RSpec.describe ProductModel, type: :model do
         expect(result).to eq 'CanecaUpdate'
         expect(result2).to eq 'Caneca2'
     end
+    it 'modelo de produto pode ser desativado' do
+        product_model = create(:product_model)
+
+        result = product_model.disabled!
+
+        expect(product_model.status).to eq 'disabled' 
+    end
+    
 end
