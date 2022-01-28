@@ -11,7 +11,7 @@ describe 'Visitante edita um galpão' do
     # Act
     visit root_path
     within('button') do
-      click_on 'Editar'
+      click_on ''
     end
     # Assert
     expect(current_path).to eq new_user_session_path
@@ -30,7 +30,7 @@ describe 'Visitante edita um galpão' do
     login_as(user)
     visit root_path
     within('button') do
-      click_on 'Editar'
+      click_on ''
     end
 
     # Assert
@@ -55,7 +55,7 @@ describe 'Visitante edita um galpão' do
     login_as(user)
     visit root_path
     within('button') do
-      click_on 'Editar'
+      click_on ''
     end
     fill_in 'Descrição', with: 'Esta descrição foi atualizada'
     fill_in 'Área Total', with: '4000'
@@ -84,7 +84,7 @@ describe 'Visitante edita um galpão' do
     login_as(user)
     visit root_path
     within('button') do
-      click_on 'Editar'
+      click_on ''
     end
     fill_in 'Nome', with: ''
     fill_in 'CEP', with: '1'

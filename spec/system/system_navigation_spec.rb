@@ -5,11 +5,11 @@ describe 'Visitor navigates' do
     visit root_path
 
     # Assert 1
-    expect(page).to have_css('nav a', text: 'Início') 
+    expect(page).to have_css('h1', text: 'Warehouse App') 
 
     # Assert 2
-    within('nav') do
-      expect(page).to have_link('Início', href: root_path)
+    within('a#home') do
+      expect(page).to have_text('Início')
     end
   end
 end

@@ -1,50 +1,111 @@
 <!DOCTYPE html>
-<html>
+<html class="ls-theme-green">
   <head>
+
+    <link rel="stylesheet" type="text/css" href="//assets.locaweb.com.br/locastyle/3.10.1/stylesheets/locastyle.css">
+
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Insira aqui a descrição da página.">
+    <link href="http://assets.locaweb.com.br/locastyle/3.10.1/stylesheets/locastyle.css" rel="stylesheet" type="text/css">
+    <link rel="icon" sizes="192x192" href="/locawebstyle/assets/images/ico-boilerplate.png">
+    <link rel="apple-touch-icon" href="/locawebstyle/assets/images/ico-boilerplate.png">
+    
     <title>WarehouseApp</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <!-- inicio bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-    <!-- Fim Bootstrap -->
+    
+    
+    
   </head>
 
   <body>
     <header>
-      <nav>
-        <%= link_to '| Início |', root_path %>
-        <%= link_to '| Ver Fornecedores |', suppliers_path %>
-        <%= link_to '| Categorias |', categories_path %>
-        <%= link_to '| Ver Produtos |', product_models_path %>
-        <% if user_signed_in? %>
-          <%= link_to '| Cadastrar novo galpão |', new_warehouse_path %>
-          <%= link_to '| Cadastrar novo fornecedor |', new_supplier_path %>
-          <%= link_to '| Cadastrar modelo de produto |', new_product_model_path %>
-          <%= link_to '| Criar novo kit de produtos |', new_product_bundle_path %>
-          <%= link_to '| Cadastrar nova categoria |', new_category_path %>
-          <%= link_to '| Entrada de Itens |', product_items_path %>
-          <span>Olá <%= current_user.email %></span> | 
-          <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
-        <% else %>
-          <%= link_to '| Entrar |', new_user_session_path %>
-        <% end %>
+
+  <div class="ls-topbar">
+
+  <div class="ls-notification-topbar">
+
+
+  
+    <div data-ls-module="dropdown" class="ls-dropdown ls-user-account">
+      <% if user_signed_in? %>
+        <a class="ls-ico-user">
+          <span class="ls-name"><%= current_user.email %></span>
+        </a>
+        <nav class="ls-dropdown-nav ls-user-menu">
+          <ul>
+            <li><a><%= link_to 'Sair', destroy_user_session_path, method: :delete %></a></li>
+          </ul>
+        </nav>
+      <% else %>
+        <a class="ls-ico-user"><%= link_to 'Entrar', new_user_session_path %></a>
+       <% end %>
+    </div>
+  </div>
+
+    <span class="ls-show-sidebar ls-ico-menu"></span>
+
+    <a id="home" href= / class="ls-go-next"><span class="ls-text">Início</span></a>
+
+    <h1 class="ls-brand-name">
+      <a href= / class="ls-ico-earth">
+        <small>Warehouse App</small>
+        Sistema de gestão de estoques
+      </a>
+    </h1>
+  </div>
+  
+  
+  </div>
+  <main class="ls-main"></main>
+
+  <aside class="ls-sidebar">
+    
+    <div class="ls-sidebar-inner">
+      <nav class="ls-menu">
+        <ul>
+          <li class="ls-active"><a class="ls-ico-users" href=/suppliers >Ver Fornecedores</a></li>
+          <li><a class="ls-ico-flag" href=/categories>Categorias</a></li>
+          <li><a class="ls-ico-cart" href=/product_models>Ver Produtos</a></li>
+          <% if user_signed_in? %>
+            <li class="ls-submenu">
+              <a class="ls-ico-cog">Administrador</a>
+              <ul role="menu">
+                <li><a class="ls-submenu-item" href=/warehouses/new>Cadastrar novo galpão</a></li>
+                <li><a class="ls-submenu-item" href=/suppliers/new>Cadastrar novo fornecedor</a></li>
+                <li><a class="ls-submenu-item" href=/product_models/new>Cadastrar modelo de produto</a></li>
+                <li><a class="ls-submenu-item" href=/product_bundles/new>Criar novo kit de produtos</a></li>
+                <li><a class="ls-submenu-item" href=/categories/new>Cadastrar nova categoria</a></li>
+                <li><a class="ls-submenu-item" href=/product_items>Entrada de Itens</a></li>
+              </ul>
+            </li>
+          <% end %>
+        </ul>
 
       </nav>
-      <hr>
+    </div>
+  </aside>
+
     </header>
     <main>
       <%= flash[:notice] %>
       <%= flash[:alert] %>
       <%= yield %>
     </main>
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="http://assets.locaweb.com.br/locastyle/3.10.1/javascripts/locastyle.js" type="text/javascript"></script>
   </body>
+
+  <style>
+    .container { 
+        width: 700px; 
+        margin-left: auto;
+        margin-right: auto; 
+    }
+  </style>
+
 </html>

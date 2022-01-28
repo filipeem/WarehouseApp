@@ -1,33 +1,25 @@
-<h1>WareHouse App</h1>
-<h3>Boas vindas ao sistema de gestão de estoques</h3>
-
-<%= form_with url: search_warehouses_path, method: :get do %>
-  <%= label_tag :q, 'Pesquisa:' %>
-  <%= text_field_tag :q %>
-  <%= submit_tag 'Buscar' %>
-<% end %>
-
-
 <hr>
-<div class="container mt-3">
-<h2>Galpões Cadastrados</h2>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Código</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @warehouses.each do |w| %>
-    <tr>
-      <td> <%= link_to(w.name, warehouse_path(w.id))%> </td>
-      <td> <%= w.code %> </td>
-      <td><button type="button" class="btn btn-outline-primary"> 
-          <%= link_to 'Editar', edit_warehouse_path(w.id) %> </button> </td>
-    <% end %>
-    </tr>
-  </tbody>
-</table>
+<div class="container">
+  <%= form_with url: search_warehouses_path, method: :get do %>
+    <%= label_tag :q, 'Pesquisar Galpões:' %>
+    <%= text_field_tag :q %>
+    <%= submit_tag 'Buscar', :class => "ls-btn-primary"%>
+  <% end %>
 </div>
-<hr>
+
+<div class="container">
+  <h1 class="ls-title-intro ls-ico-list2 ls-no-bg">Galpões Cadastrados</h1>
+  <% @warehouses.each do |w| %>
+  <div class="ls-list">
+    <header class="ls-list-header">
+      <div class="ls-list-title col-md-4">
+        <a><%= link_to(w.name, warehouse_path(w.id))%></a>
+        <small><%= w.code %> </small>
+      </div>
+      <div class="col-md-3 col-md-offset-5 ls-txt-right">
+        <button class="ls-btn-primary ls-ico-pencil" ><%= link_to '', edit_warehouse_path(w.id) %></button>
+      </div>
+    </header>
+  </div>
+  <% end %>
+</div>

@@ -14,7 +14,7 @@ describe 'Usuário faz login' do
     end
     # Assert
     expect(current_path).to eq root_path
-    expect(page).to have_content 'Olá usuario@email.com'
+    expect(page).to have_content 'usuario@email.com'
     expect(page).to have_content 'Login efetuado com sucesso'
     expect(page).to have_link 'Sair'
     expect(page).not_to have_link 'Entrar'
@@ -37,6 +37,6 @@ describe 'Usuário faz login' do
     expect(page).to have_content 'Logout efetuado com sucesso'
     expect(page).to have_link 'Entrar'
     expect(page).not_to have_link 'Sair'
-    expect(page).not_to have_content 'Olá usuario@email.com'
+    expect(page).not_to have_content 'usuario@email.com'
   end
 end

@@ -9,8 +9,8 @@ describe 'Visitante abre a tela inicial' do
     visit root_path
 
     # Assert
-    expect(page).to have_css('h1', text: 'WareHouse App')
-    expect(page).to have_css('h3', text: 'Boas vindas ao sistema de gestão de estoques')
+    expect(page).to have_css('h1', text: 'Warehouse App')
+    expect(page).to have_css('h1', text: 'Sistema de gestão de estoques')
   end
 
   it 'e vê os galpões cadastrados' do
