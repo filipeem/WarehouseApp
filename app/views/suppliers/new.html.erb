@@ -1,47 +1,49 @@
-<h1>Novo Fornecedor</h1>
+<div class="container">
+  <h2>Novo Fornecedor</h2>
 
-<% if @supplier.errors.any? %>
-  <span>Verifique os campos abaixo:</span>
-  <ul>
-  <% @supplier.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
+  <% if @supplier.errors.any? %>
+    <span>Verifique os campos abaixo:</span>
+    <ul>
+    <% @supplier.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
   <% end %>
-  </ul>
-<% end %>
 
 
-<%= form_with(model: @supplier) do |form| %>
-  <div>
-    <%= form.label :name, 'Nome' %>
-    <%= form.text_field(:name) %>
-  </div>
-  <div>
-    <%= form.label :corporate_name, 'Razão Social' %>
-    <%= form.text_field(:corporate_name) %>
-  </div>
-  <div>
-    <%= form.label :cnpj, 'CNPJ' %>
-    <%= form.text_field :cnpj, onkeypress:"$(this).mask('00.000.000/0000-00')" %>
-  </div>
-  <div>
-    <%= form.label :address, 'Endereço' %>
-    <%= form.text_field(:address) %>
-  </div>
-  <div>
-    <%= form.label :city, 'Cidade' %>
-    <%= form.text_field(:city) %>
-  </div>
-  <div>
-    <%= form.label :state, 'Estado' %>
-    <%= form.text_field(:state) %>
-  </div>
-  <div>
-    <%= form.label :email, 'e-mail' %>
-    <%= form.email_field(:email) %>
-  </div>
-  <div>
-    <%= form.label :phone, 'Telefone' %>
-    <%= form.text_field :phone, onkeypress:"$(this).mask('(00) 00000-0000')" %>
-  </div>
-  <%= form.submit 'Gravar' %>
-<% end %>
+  <%= form_with(model: @supplier) do |form| %>
+    <div>
+      <%= form.label :name, 'Nome' %>
+      <%= form.text_field(:name) %>
+    </div>
+    <div>
+      <%= form.label :corporate_name, 'Razão Social' %>
+      <%= form.text_field(:corporate_name) %>
+    </div>
+    <div>
+      <%= form.label :cnpj, 'CNPJ' %>
+      <%= form.text_field :cnpj, onkeypress:"$(this).mask('00.000.000/0000-00')" %>
+    </div>
+    <div>
+      <%= form.label :address, 'Endereço' %>
+      <%= form.text_field(:address) %>
+    </div>
+    <div>
+      <%= form.label :city, 'Cidade' %>
+      <%= form.text_field(:city) %>
+    </div>
+    <div>
+      <%= form.label :state, 'Estado' %>
+      <%= form.text_field(:state) %>
+    </div>
+    <div>
+      <%= form.label :email, 'e-mail' %>
+      <%= form.email_field(:email) %>
+    </div>
+    <div>
+      <%= form.label :phone, 'Telefone' %>
+      <%= form.text_field :phone, onkeypress:"$(this).mask('(00) 00000-0000')" %>
+    </div>
+    <%= form.submit 'Gravar' %>
+  <% end %>
+</div>

@@ -1,11 +1,13 @@
-<h1>Resultados da Pesquisa</h1>
-<ul>
-  <% @warehouses.each do |w| %>
-    <tr>
-      <td> <%= link_to(w.name, warehouse_path(w.id))%> </td>
-      <td> <%= w.code %> </td>
-      <td><button type="button" class="btn btn-outline-primary"> 
-          <%= link_to 'Editar', edit_warehouse_path(w.id) %> </button> </td>
-    </tr>
-  <% end %>
-</ul>
+<div class="container">
+  <h2>Resultados da Pesquisa</h2>
+  <ul>
+    <% @warehouses.each do |w| %>
+      <tr>
+        <td> <%= link_to(w.name, warehouse_path(w.id))%> </td>
+        <td> <%= w.code %> </td>
+        <td><button type="button" class="btn btn-outline-primary"> 
+            <%= link_to 'Editar', edit_warehouse_path(w.id) %> </button> </td>
+      </tr>
+    <% end %>
+  </ul>
+</div>

@@ -1,6 +1,7 @@
-<h1>WareHouse App</h1>
 
-<h2>Categorias Cadastradas</h2>
-<% @categories.each do |c| %>
-  <p><%= link_to(c.name, category_path(c.id))%>
-<% end %>
+<div class="container">
+  <h2>Categorias Cadastradas</h2>
+  <% @categories.each do |c| %>
+    <p><%= link_to(c.name, category_path(c.id))%>
+  <% end %>
+</div>

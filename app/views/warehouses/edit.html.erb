@@ -1,56 +1,56 @@
-<h1>Editar Galpão</h1>
+<div class="container">
+  <h2>Editar Galpão</h2>
 
-<% if @warehouse.errors.any? %>
-  <span>Verifique os campos abaixo:</span>
-  <ul>
-  <% @warehouse.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
+  <% if @warehouse.errors.any? %>
+    <span>Verifique os campos abaixo:</span>
+    <ul>
+    <% @warehouse.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+      </ul>
   <% end %>
-    </ul>
-<% end %>
- 
 
-
-<%= form_with(model: @warehouse) do |form| %>
-  <div>
-    <%= form.label :name, 'Nome' %>
-    <%= form.text_field(:name) %>
-  </div>
-  <div>
-    <%= form.label :code, 'Código' %>
-    <%= form.text_field(:code) %>
-  </div>
-  <div>
-    <%= form.label :description, 'Descrição' %>
-    <%= form.text_area(:description) %>
-  </div>
-  <div>
-    <%= form.label :address, 'Endereço' %>
-    <%= form.text_field(:address) %>
-  </div>
-  <div>
-    <%= form.label :city, 'Cidade' %>
-    <%= form.text_field(:city) %>
-  </div>
-  <div>
-    <%= form.label :state, 'Estado' %>
-    <%= form.text_field(:state) %>
-  </div>
-  <div>
-    <%= form.label :postal_code, 'CEP' %>
-    <%= form.text_field :postal_code, onkeypress:"$(this).mask('00000-000')" %>
-  </div>
-  <div>
-    <%= form.label :total_area, 'Área Total' %>
-    <%= form.number_field(:total_area) %>
-  </div>
-  <div>
-    <%= form.label :useful_area, 'Área Útil' %>
-    <%= form.number_field(:useful_area) %>
-  </div>
-  <div>
-    <span>Escolha as Categorias</span>
-    <%= form.collection_check_boxes :category_ids, Category.all, :id, :name %>
-  </div>
-  <%= form.submit 'Gravar' %>
-<% end %>
+  <%= form_with(model: @warehouse) do |form| %>
+    <div>
+      <%= form.label :name, 'Nome' %>
+      <%= form.text_field(:name) %>
+    </div>
+    <div>
+      <%= form.label :code, 'Código' %>
+      <%= form.text_field(:code) %>
+    </div>
+    <div>
+      <%= form.label :description, 'Descrição' %>
+      <%= form.text_area(:description) %>
+    </div>
+    <div>
+      <%= form.label :address, 'Endereço' %>
+      <%= form.text_field(:address) %>
+    </div>
+    <div>
+      <%= form.label :city, 'Cidade' %>
+      <%= form.text_field(:city) %>
+    </div>
+    <div>
+      <%= form.label :state, 'Estado' %>
+      <%= form.text_field(:state) %>
+    </div>
+    <div>
+      <%= form.label :postal_code, 'CEP' %>
+      <%= form.text_field :postal_code, onkeypress:"$(this).mask('00000-000')" %>
+    </div>
+    <div>
+      <%= form.label :total_area, 'Área Total' %>
+      <%= form.number_field(:total_area) %>
+    </div>
+    <div>
+      <%= form.label :useful_area, 'Área Útil' %>
+      <%= form.number_field(:useful_area) %>
+    </div>
+    <div>
+      <span>Escolha as Categorias</span>
+      <%= form.collection_check_boxes :category_ids, Category.all, :id, :name %>
+    </div>
+    <%= form.submit 'Gravar' %>
+  <% end %>
+</div>

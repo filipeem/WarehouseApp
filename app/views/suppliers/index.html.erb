@@ -1,7 +1,7 @@
-<h1>WareHouse App</h1>
-
-<h2>Fornecedores Cadastrados</h2>
-<% @suppliers.each do |s| %>
-  <p><%= link_to(s.name, supplier_path(s.id))%>
-  <%= s.email %></p>
-<% end %>
+<div class="container">
+  <h2>Fornecedores Cadastrados</h2>
+  <% @suppliers.each do |s| %>
+    <p><%= link_to(s.name, supplier_path(s.id))%>
+    <%= s.email %></p>
+  <% end %>
+</div>

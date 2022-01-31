@@ -1,37 +1,39 @@
-<h1><%= @warehouse.name %></h1>
-<div style='text-align:right'><button type="button" class="btn btn-outline-danger"> 
-                  <%= link_to 'Apagar', warehouse_path, method: :delete, 
-                  data: { confirm: 'Quer apagar esta tarefa?' } %></button></div>
-<h2><%= @warehouse.code %></h2>
-<dl>
-  <dt>Descrição</dt>
-  <dd><%= @warehouse.description %></dd>
-  <dt>Endereço</dt>
-  <dd><%= @warehouse.address %> - <%= @warehouse.city %>/<%= @warehouse.state %></dd>
-  <dt>CEP:</dt>
-  <dd><%= @warehouse.postal_code %></dd>
-  <dt>Área Total:</dt>
-  <dd><%= @warehouse.total_area %> m2</dd>
-  <dt>Área Útil:</dt>
-  <dd><%= @warehouse.useful_area %> m2</dd>
-  <dt>Categorias:</dt>
-  <dd><% @warehouse.categories.each do |c| %>
-        <%= c.name %>
-      <% end %>
-  </dd>
-</dl>
-<h2>Estoque</h2>
-<dl>
-  <dt>Produto</dt>
-  <% @items = @warehouse.product_items.group(:product_model).count %>
-      <% @items.each_pair do |product_model, quantity|%>
-      <div id="product-<%= product_model.id %>">
-        <dd><%= product_model.name %></dd>
-         <dt>Quantidade</dt>
-        <dd><%= quantity %></dd>
-        </div>
-      <% end %>
-</dl>
+<div class="container">
+  <h2><%= @warehouse.name %></h2>
+  <div style='text-align:right'><button type="button" class="btn btn-outline-danger"> 
+                    <%= link_to 'Apagar', warehouse_path, method: :delete, 
+                    data: { confirm: 'Quer apagar esta tarefa?' } %></button></div>
+  <h2><%= @warehouse.code %></h2>
+  <dl>
+    <dt>Descrição</dt>
+    <dd><%= @warehouse.description %></dd>
+    <dt>Endereço</dt>
+    <dd><%= @warehouse.address %> - <%= @warehouse.city %>/<%= @warehouse.state %></dd>
+    <dt>CEP:</dt>
+    <dd><%= @warehouse.postal_code %></dd>
+    <dt>Área Total:</dt>
+    <dd><%= @warehouse.total_area %> m2</dd>
+    <dt>Área Útil:</dt>
+    <dd><%= @warehouse.useful_area %> m2</dd>
+    <dt>Categorias:</dt>
+    <dd><% @warehouse.categories.each do |c| %>
+          <%= c.name %>
+        <% end %>
+    </dd>
+  </dl>
+  <h2>Estoque</h2>
+  <dl>
+    <dt>Produto</dt>
+    <% @items = @warehouse.product_items.group(:product_model).count %>
+        <% @items.each_pair do |product_model, quantity|%>
+        <div id="product-<%= product_model.id %>">
+          <dd><%= product_model.name %></dd>
+          <dt>Quantidade</dt>
+          <dd><%= quantity %></dd>
+          </div>
+        <% end %>
+  </dl>
 
 
-<%= link_to 'Voltar', root_path %>
+  <%= link_to 'Voltar', root_path %>
+</div>

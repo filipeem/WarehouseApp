@@ -1,15 +1,17 @@
-<h1><%= @category.name %></h1>
+<div class="container">
+  <h2><%= @category.name %></h2>
 
-<h2>Produtos desta categoria:</h2>
-<table>
-  <tr>
-    <th>Produto</th>
-    <th>SKU</th>
-  </tr>
-  <% @category.product_models.each do |p| %>
+  <h2>Produtos desta categoria:</h2>
+  <table>
     <tr>
-      <td><%= link_to(p.name, product_model_path(p.id))%></td>
-      <td><%= p.sku %></td>
+      <th>Produto</th>
+      <th>SKU</th>
     </tr>
-  <% end %>
-</table>
+    <% @category.product_models.each do |p| %>
+      <tr>
+        <td><%= link_to(p.name, product_model_path(p.id))%></td>
+        <td><%= p.sku %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

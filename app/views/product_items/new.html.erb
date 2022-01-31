@@ -1,23 +1,25 @@
-<%= form_with(url: product_items_path) do |form| %>
-  <div>
-    <%= form.label :amount, 'Quantidade' %>
-    <%= form.number_field :amount %>
-  </div>
-  <div>
-    <%= form.label :product_model_id, "Produto" %>
-    <%= form.collection_select(:product_model_id, @product_models, :id, :name) %>
-  </div>
-  <div>
-    <%= form.label :warehouse_id, "Galpão Destino" %>
-    <%= form.collection_select(:warehouse_id, @warehouses, :id, :code) %>
-  </div>
-  <div>
-    <%= form.label :price, "Preço" %>
-    <%= form.number_field :price %>
-  </div>
-  <div>
-    <%= form.label :batch, "Lote" %>
-    <%= form.number_field :batch %>
-  </div>
-  <%= form.submit 'Confirmar' %>
-<% end %>
+<div class="container">
+  <%= form_with(url: product_items_path) do |form| %>
+    <div>
+      <%= form.label :amount, 'Quantidade' %>
+      <%= form.number_field :amount %>
+    </div>
+    <div>
+      <%= form.label :product_model_id, "Produto" %>
+      <%= form.collection_select(:product_model_id, @product_models, :id, :name) %>
+    </div>
+    <div>
+      <%= form.label :warehouse_id, "Galpão Destino" %>
+      <%= form.collection_select(:warehouse_id, @warehouses, :id, :code) %>
+    </div>
+    <div>
+      <%= form.label :price, "Preço" %>
+      <%= form.number_field :price %>
+    </div>
+    <div>
+      <%= form.label :batch, "Lote" %>
+      <%= form.number_field :batch %>
+    </div>
+    <%= form.submit 'Confirmar' %>
+  <% end %>
+</div>
