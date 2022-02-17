@@ -12,7 +12,7 @@ Aplicativo de gerenciamento de galpões, elaborado no programa QueroSerDev 7.
 
 ` docker build -t warehouse . `
 
-` docker run -it warehouse bash `
+` docker run -it -p 3000:3000 warehouse bash `
 
 ` rails s -b 0.0.0.0 `
 
