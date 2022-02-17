@@ -34,7 +34,7 @@ describe 'Vistante abre a tela inicial' do
     click_on 'Fornecedores'
     click_on 'Fábrica Geek'
     # Assert -> Validar / Esperar que algo aconteça
-    expect(page).to have_css('h1', text: 'Fábrica Geek')
+    expect(page).to have_css('h2', text: 'Fábrica Geek')
     expect(page).to have_css('h2', text: 'Produtos deste fornecedor:')
     expect(page).to have_content('Caneca Star Wars')
     expect(page).to have_content('Pelúcia Dumbo')
