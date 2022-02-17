@@ -2,7 +2,7 @@
 
 Aplicativo de gerenciamento de galpões, elaborado no programa QueroSerDev 7.
 
-* Ruby 3.0.0
+* Ruby 3.0.3
 
 * Rails 6.1.4.1
 
@@ -10,11 +10,18 @@ Aplicativo de gerenciamento de galpões, elaborado no programa QueroSerDev 7.
 
 ## Subindo a aplicação com Docker
 
+### Docker puro
+
 ` docker build -t warehouse . `
 
-` docker run -it -p 3000:3000 warehouse bash `
+` docker run -it -p 3000:3000 -v ~/caminho_ate_o_projeto:/app warehouse bash `
 
 ` rails s -b 0.0.0.0 `
+
+### Docker compose
+
+` docker-compose build `
+` docker-compose run --service-ports rails bash `
 
 ## API
 

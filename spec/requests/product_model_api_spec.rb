@@ -100,21 +100,15 @@ describe 'ProductModel API' do
                                     cnpj: '00.000.000/0002-00', email: 'contato@geek.com')
       category = Category.create!(name: 'Cozinha')
       # Act
+      params = JSON.generate({'name' => 'Caneca Star Wars', 'weight' => '50', 'height' => '10', 'length' => '6',
+                'width' => '6', 'supplier_id' => supplier.id, 'category_id' => category.id })
       headers = { "CONTENT_TYPE" => "application/json" }
-      post '/api/v1/product_models', params: '{ "name": "Caneca Star Wars",
-                                            "weight": "50",
-                                            "height": "10",
-                                            "length": "6",
-                                            "width": "6",
-                                            "supplier_id": "1",
-                                            "category_id": "1" }',
-                                 headers: headers
-
+      post '/api/v1/product_models', params: params, headers: headers
       # Assert
       expect(response.status).to eq 201
       parsed_response = JSON.parse(response.body)
       expect(parsed_response["name"]).to eq 'Caneca Star Wars'
-      expect(parsed_response["supplier_id"]).to eq 1
+      expect(parsed_response["supplier_id"]).to eq supplier.id
       expect(parsed_response["id"]).to be_a_kind_of(Integer)
     end
 
