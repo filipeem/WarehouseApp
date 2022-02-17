@@ -8,6 +8,14 @@ Aplicativo de gerenciamento de galpões, elaborado no programa QueroSerDev 7.
 
 * Node 16.13.1
 
+## Subindo a aplicação com Docker
+
+` docker build -t warehouse . `
+
+` docker run -it warehouse bash `
+
+` rails s -b 0.0.0.0 `
+
 ## API
 
 ### Galpões
